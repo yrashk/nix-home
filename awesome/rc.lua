@@ -345,7 +345,7 @@ globalkeys = gears.table.join(
 		    textbox = awful.screen.focused().mypromptbox.widget,
 		    exe_callback = function (result) 
 	               awful.spawn.easy_async("translate " .. result, function(stdout, stderr, reason, exit_code)
-			   naughty.notify { title = result, text = stdout, position = "top_middle" }
+			   naughty.notify { title = result, text = stdout, position = "top_left" }
 		       end)
 	            end
 		  }
