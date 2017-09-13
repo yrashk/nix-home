@@ -568,6 +568,7 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 -- Arrange the displays
-awesome.spawn("xrandr --output eDP1 --left-of DP2-1 --mode 2048x1152")
+awful.spawn("xrandr --output eDP1 --mode 2048x1152")
+awful.spawn("xrandr --output eDP1 --left-of DP2-1")
 
 -- }}}
