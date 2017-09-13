@@ -33,6 +33,11 @@ with import <nixpkgs> {};
      text = builtins.readFile awesome/rc.lua; 
   };
 
+  home.file.".config/awesome/theme.lua" = {
+     text = builtins.readFile awesome/theme.lua; 
+  };
+
+
   home.file.".config/awesome/foggy".source = fetchFromGitHub {
      owner = "k3rni";
      repo = "foggy";
