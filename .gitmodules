@@ -1,3 +1,6 @@
 [submodule "home-manager"]
 	path = home-manager
 	url = https://github.com/rycee/home-manager
+[submodule "nixpkgs-mozilla"]
+	path = nixpkgs-mozilla
+	url = https://github.com/mozilla/nixpkgs-mozilla.git
