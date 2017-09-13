@@ -1,6 +1,11 @@
 {
   allowUnfree = true;
   packageOverrides = pkgs: rec {
-    home-manager = import ./home-manager { inherit pkgs; };
+      unstable = import <nixos-unstable> {
+          config = {
+              allowUnfree = true;
+          };
+      };
+      home-manager = import ./home-manager { inherit pkgs; };
   };
 }

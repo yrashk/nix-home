@@ -14,6 +14,8 @@ with import <nixpkgs> {};
                                                                                                  sha256 = "15a4799ffde294d0f2fce0b735bbfe370e3d0327380a0efc45905241729898e3"; }; }))
     pkgs.tdesktop # Telegram Messenger
     pkgs.skype
+    pkgs.chromium
+    pkgs.unstable.alacritty
   ];
 
 
