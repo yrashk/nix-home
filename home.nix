@@ -16,6 +16,7 @@ with import <nixpkgs> {};
     pkgs.skype
     pkgs.chromium
     pkgs.unstable.alacritty
+    pkgs.translate-shell
   ];
 
 

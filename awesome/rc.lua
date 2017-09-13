@@ -338,6 +338,19 @@ globalkeys = gears.table.join(
                   }
               end,
               {description = "lua execute prompt", group = "awesome"}),
+    awful.key({ modkey }, "t",
+              function ()
+		  awful.prompt.run {
+	            prompt  = "translate from:to word => ",
+		    textbox = awful.screen.focused().mypromptbox.widget,
+		    exe_callback = function (result) 
+	               awful.spawn.easy_async("translate " .. result, function(stdout, stderr, reason, exit_code)
+			   naughty.notify { title = result, text = stdout, position = "top_middle" }
+		       end)
+	            end
+		  }
+              end,
+	      {description = "translate", group = "awesome"}),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"})
