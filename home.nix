@@ -45,4 +45,13 @@ with import <nixpkgs> {};
      sha256 = "0lfm7kczgdlzfcc14qj8539y679lf5qcydz0xv72szn7h9wzaaiz";
   };
 
+  home.file.".config/awesome/battery-widget".source = fetchFromGitHub {
+     owner = "deficient";
+     repo = "battery-widget";
+     rev = "4152487";
+     sha256 = "14p4c37m6s88d2dkgkv1b7xk2paj06cfdadphmhx2m2gr7c9c01f";
+  };
+
+
+
 }

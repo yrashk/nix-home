@@ -4,6 +4,7 @@ local awful = require("awful")
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
+local battery_widget = require("battery-widget")
 -- Theme handling library
 local beautiful = require("beautiful")
 local foggy = require('foggy')
@@ -217,6 +218,7 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            battery_widget({adapter = "BAT0"}).widget,
             mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
