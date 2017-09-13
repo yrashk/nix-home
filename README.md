@@ -1,4 +1,4 @@
-# Instllation
+# Installation
 
 ```shell
 $ git submodule init
