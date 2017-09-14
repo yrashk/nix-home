@@ -39,6 +39,11 @@ with import <nixpkgs> {};
      text = builtins.readFile fish/fish_prompt.fish;
   };
 
+  home.file.".vimrc" = {
+    text = builtins.readFile vim/vimrc;
+  };
+
+
   home.file.".config/awesome/rc.lua" = {
      text = builtins.readFile awesome/rc.lua; 
   };
