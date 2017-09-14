@@ -17,6 +17,7 @@ with import <nixpkgs> {};
     pkgs.unstable.chromium
     pkgs.unstable.alacritty
     pkgs.translate-shell
+    pkgs.xss-lock
   ];
 
 
