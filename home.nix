@@ -26,6 +26,13 @@ with import <nixpkgs> {};
     userEmail = "yrashk@gmail.com";
   };
 
+  home.file.".config/fish/config.fish" = {
+    text = ''
+    set -x EDITOR vim
+    '';
+  };
+
+
   home.file.".config/fish/functions/fish_prompt.fish" = {
      text = builtins.readFile fish/fish_prompt.fish;
   };
