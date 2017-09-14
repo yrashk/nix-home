@@ -5,6 +5,7 @@ require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
 local battery_widget = require("battery-widget")
+local volume_control = require("volume-control")
 -- Theme handling library
 local beautiful = require("beautiful")
 local foggy = require('foggy')
@@ -92,6 +93,8 @@ local function client_menu_toggle_fn()
     end
 end
 -- }}}
+
+volumecfg = volume_control({})
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
@@ -218,6 +221,7 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            volumecfg.widget,
             battery_widget({adapter = "BAT0"}).widget,
             mykeyboardlayout,
             wibox.widget.systray(),
@@ -238,6 +242,11 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
+    -- Sound
+    awful.key({}, "XF86AudioRaiseVolume", function() volumecfg:up() end),
+    awful.key({}, "XF86AudioLowerVolume", function() volumecfg:down() end),
+    awful.key({}, "XF86AudioMute",        function() volumecfg:toggle() end),
+    --
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,

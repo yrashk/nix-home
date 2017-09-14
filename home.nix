@@ -61,6 +61,13 @@ with import <nixpkgs> {};
      sha256 = "14p4c37m6s88d2dkgkv1b7xk2paj06cfdadphmhx2m2gr7c9c01f";
   };
 
+  home.file.".config/awesome/volume-control".source = fetchFromGitHub {
+     owner = "deficient";
+     repo = "volume-control";
+     rev = "137b19e";
+     sha256 = "1xsxcmsivnlmqckcaz9n5gc4lgxpjm410cfp65s0s4yr5x2y0qhs";
+  };
+
 
 
 }
