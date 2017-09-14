@@ -268,7 +268,7 @@ globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
+    awful.key({ modkey,           }, "m", function () mymainmenu:show() end,
               {description = "show main menu", group = "awesome"}),
 	     
     awful.key({ modkey, "Shift" }, "y",      foggy.menu),
@@ -360,6 +360,20 @@ globalkeys = gears.table.join(
 		  }
               end,
 	      {description = "translate", group = "awesome"}),
+    awful.key({ modkey }, "w",
+              function ()
+		  awful.prompt.run {
+	            prompt  = "weather [place]: ",
+		    textbox = awful.screen.focused().mypromptbox.widget,
+		    exe_callback = function (result) 
+	               awful.spawn.easy_async("sh -c 'curl -s wttr.in/" .. result .. " | ansifilter -T'", function(stdout, stderr, reason, exit_code)
+			   naughty.notify { title = result, text = stdout, position = "top_left", font = "Iosevka" } -- Iosevka is used because we need a monospace font
+		       end)
+	            end
+		  }
+              end,
+	      {description = "weather", group = "awesome"}),
+
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"})

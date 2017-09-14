@@ -19,6 +19,7 @@ with import <nixpkgs> {};
     pkgs.translate-shell
     pkgs.xss-lock
     pkgs.vimHugeX
+    pkgs.ansifilter # used to strip ANSI out in awesome extensions 
   ];
 
 
