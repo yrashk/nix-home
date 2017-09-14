@@ -18,6 +18,7 @@ with import <nixpkgs> {};
     pkgs.unstable.alacritty
     pkgs.translate-shell
     pkgs.xss-lock
+    pkgs.vimHugeX
   ];
 
 
