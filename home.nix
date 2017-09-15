@@ -29,6 +29,10 @@ with import <nixpkgs> {};
     userEmail = "yrashk@gmail.com";
   };
 
+  home.file.".config/alacritty/alacritty.yml" = {
+    text = builtins.readFile ./alacritty.yml;
+  };
+
   home.file.".config/fish/config.fish" = {
     text = ''
     set -x EDITOR vim
