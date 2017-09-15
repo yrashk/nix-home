@@ -8,6 +8,7 @@ with import <nixpkgs> {};
     pkgs.rlwrap
     pkgs.xorg.xdpyinfo # awesome/foggy seems to want it
     pkgs.htop
+    pkgs.dropbox
     pkgs.atom
     # Older version of IntelliJ IDEA can't be downloaded from JetBrains anymore
     (pkgs.idea.idea-ultimate.overrideAttrs (attrs: { version = "2017.2.4"; src = pkgs.fetchurl { url = "https://download.jetbrains.com/idea/ideaIU-2017.2.4-no-jdk.tar.gz";
@@ -27,6 +28,25 @@ with import <nixpkgs> {};
     enable = true;
     userName = "Yurii Rashkovskii";
     userEmail = "yrashk@gmail.com";
+  };
+
+  systemd.user.services.dropbox = {
+    Unit = {
+      Description = "Dropbox";
+      After = [ "graphical-session-pre.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+
+    Service = {
+      Restart = "on-failure";
+      RestartSec = 1;
+      ExecStart = "${pkgs.dropbox}/bin/dropbox";
+     };
+
+    Install = {
+        WantedBy = [ "graphical-session.target" ];
+    };
+
   };
 
   home.file.".config/alacritty/alacritty.yml" = {
