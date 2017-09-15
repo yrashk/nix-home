@@ -15,7 +15,7 @@ with import <nixpkgs> {};
     pkgs.nixpkgs.tdesktop # Telegram 
     pkgs.skype
     pkgs.unstable.chromium
-    pkgs.unstable.alacritty
+    pkgs.unstable.alacritty pkgs.tmux
     pkgs.translate-shell
     pkgs.xss-lock
     pkgs.vimHugeX
