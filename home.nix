@@ -7,6 +7,7 @@ with import <nixpkgs> {};
     pkgs.nix-repl
     pkgs.rlwrap
     pkgs.xorg.xdpyinfo # awesome/foggy seems to want it
+    pkgs.vlc
     pkgs.htop
     pkgs.dropbox
     pkgs.atom
