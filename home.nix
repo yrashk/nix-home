@@ -8,6 +8,7 @@ with import <nixpkgs> {};
     pkgs.rlwrap
     pkgs.xorg.xdpyinfo # awesome/foggy seems to want it
     pkgs.vlc
+    pkgs.zathura # document viewer
     pkgs.htop
     pkgs.ncdu # Disk space usage analyzer
     pkgs.ripgrep # rg, fast grepper
