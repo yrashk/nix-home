@@ -57,6 +57,12 @@ with import <nixpkgs> {};
     text = builtins.readFile ./alacritty.yml;
   };
 
+  home.file.".tmux.conf" = {
+   text = ''
+   set-option -g default-shell $SHELL
+   '';
+  };
+
   home.file.".config/fish/config.fish" = {
     text = ''
     set -x EDITOR vim
