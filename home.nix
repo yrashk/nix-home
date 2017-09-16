@@ -10,6 +10,7 @@ with import <nixpkgs> {};
     pkgs.vlc
     pkgs.htop
     pkgs.ncdu # Disk space usage analyzer
+    pkgs.rtv # Reddit
     pkgs.dropbox
     pkgs.atom
     # Older version of IntelliJ IDEA can't be downloaded from JetBrains anymore
