@@ -9,6 +9,7 @@ with import <nixpkgs> {};
     pkgs.xorg.xdpyinfo # awesome/foggy seems to want it
     pkgs.vlc
     pkgs.htop
+    pkgs.ncdu # Disk space usage analyzer
     pkgs.dropbox
     pkgs.atom
     # Older version of IntelliJ IDEA can't be downloaded from JetBrains anymore
