@@ -10,6 +10,7 @@ with import <nixpkgs> {};
     pkgs.vlc
     pkgs.htop
     pkgs.ncdu # Disk space usage analyzer
+    pkgs.ripgrep # rg, fast grepper
     pkgs.rtv # Reddit
     pkgs.dropbox
     pkgs.atom
