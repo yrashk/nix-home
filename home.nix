@@ -70,8 +70,11 @@ with import <nixpkgs> {};
   home.file.".config/fish/config.fish" = {
     text = ''
     set -x EDITOR vim
-    alias h 'home-manager switch'
-    alias r 'sudo nixos-rebuild switch'
+    if status --is-interactive
+       set -g fish_user_abbreviations
+       abbr h 'home-manager switch'
+       abbr r 'sudo nixos-rebuild switch'
+    end
     '';
   };
 
