@@ -11,6 +11,7 @@ with import <nixpkgs> {};
     pkgs.shutter # Screenshots
     pkgs.zathura # document viewer
     pkgs.htop
+    pkgs.bc
     pkgs.ncdu # Disk space usage analyzer
     pkgs.ripgrep # rg, fast grepper
     pkgs.rtv # Reddit
