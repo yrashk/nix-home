@@ -62,7 +62,7 @@ with import <nixpkgs> {};
 
   home.file.".tmux.conf" = {
    text = ''
-   set-option -g default-shell $SHELL
+   set-option -g default-shell /run/current-system/sw/bin/fish
    '';
   };
 
