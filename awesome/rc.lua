@@ -6,6 +6,7 @@ require("awful.autofocus")
 local wibox = require("wibox")
 local battery_widget = require("battery-widget")
 local volume_control = require("volume-control")
+local calendar = require("calendar")
 -- Theme handling library
 local beautiful = require("beautiful")
 local foggy = require('foggy')
@@ -123,7 +124,9 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
+cal = calendar({})
 mytextclock = wibox.widget.textclock()
+cal:attach(mytextclock)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -373,7 +376,7 @@ globalkeys = gears.table.join(
 		  }
               end,
 	      {description = "weather", group = "awesome"}),
-
+    awful.key({ modkey }, "F12", function() if cal.notification then cal:hide() else cal:show() end end, {description = "calendar", group = "awesome"}),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"})
