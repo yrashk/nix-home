@@ -610,6 +610,9 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.spawn("xrandr --output eDP1 --mode 2048x1152")
 awful.spawn("xrandr --output eDP1 --left-of DP2-1")
 
+-- Force xkb config
+awful.spawn("setxkbmap")
+
 -- Arrange for a locker
 awful.spawn("xss-lock slock")
 -- }}}
