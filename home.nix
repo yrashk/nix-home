@@ -74,6 +74,10 @@ with import <nixpkgs> {};
   };
 
 
+  home.file.".config/fish/functions/nixsh.fish" = {
+     text = builtins.readFile fish/nixsh.fish;
+  };
+
   home.file.".config/fish/functions/fish_prompt.fish" = {
      text = builtins.readFile fish/fish_prompt.fish;
   };

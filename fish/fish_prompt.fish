@@ -75,6 +75,11 @@ function fish_prompt --description 'Write out the prompt'
             set suffix '$'
     end
 
+    if set -q NIXSH
+       echo "[$NIXSH]:"
+       echo -n "⇨  "
+    end
+
     # PWD
     set_color $color_cwd
     echo -n (prompt_pwd)
