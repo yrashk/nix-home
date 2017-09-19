@@ -308,7 +308,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Control" }, "h", function() 
-	          awesome.spawn(terminal .. " -e home-manager switch", true)
+	          awful.spawn(terminal .. " -e home-manager switch", { floating = true, placement = awful.placement.bottom_right })
 	        end,
               {description = "home-manager switch", group = "nix"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
