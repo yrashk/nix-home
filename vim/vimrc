@@ -1,3 +1,4 @@
 if has('gui_running')
    set guifont=Iosevka
 endif
+set number
