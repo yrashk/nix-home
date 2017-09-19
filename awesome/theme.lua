@@ -27,6 +27,9 @@ theme.border_normal = "#000000"
 theme.border_focus  = theme.bg_focus
 theme.border_marked = "#91231c"
 
+theme.tasklist_bg_focus = "#ffffff"
+theme.tasklist_fg_focus = "#000000"
+
 -- There are other variable sets
 -- overriding the default one when
 -- defined, the sets are:
