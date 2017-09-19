@@ -124,9 +124,13 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
+yvrclock = wibox.widget.textclock()
+bkkclock = wibox.widget.textclock("BKK %l%P ", 60, "Asia/Bangkok")
+svgclock = wibox.widget.textclock("SVG %l%P ", 60, "Europe/Oslo")
+
+
 cal = calendar({})
-mytextclock = wibox.widget.textclock()
-cal:attach(mytextclock)
+cal:attach(yvrclock)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -228,7 +232,9 @@ awful.screen.connect_for_each_screen(function(s)
             battery_widget({adapter = "BAT0"}).widget,
             mykeyboardlayout,
             wibox.widget.systray(),
-            mytextclock,
+            yvrclock,
+            bkkclock,
+            svgclock,
             s.mylayoutbox,
         },
     }
