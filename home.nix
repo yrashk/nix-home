@@ -88,6 +88,14 @@ with import <nixpkgs> {};
      text = builtins.readFile fish/fish_prompt.fish;
   };
 
+  home.file.".config/zim/preferences.conf" = {
+     text = builtins.readFile zim/preferences.conf;
+  };
+
+  home.file.".config/zim/style.conf" = {
+     text = builtins.readFile zim/style.conf;
+  };
+
   home.file.".vimrc" = {
     text = builtins.readFile vim/vimrc;
   };
