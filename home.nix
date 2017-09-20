@@ -109,6 +109,12 @@ with import <nixpkgs> {};
      text = builtins.readFile awesome/theme.lua; 
   };
 
+  home.file.".config/awesome/backgrounds".source = fetchFromGitHub {
+     owner = "yrashk";
+     repo = "backgrounds";
+     rev = "78969fe";
+     sha256 = "1n3yphisyj031rr4y2r12d2iv2v4cb8dk8krkbi0b4p2l6jp4zk7";
+  };
 
   home.file.".config/awesome/foggy".source = fetchFromGitHub {
      owner = "k3rni";
