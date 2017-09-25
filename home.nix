@@ -67,6 +67,7 @@ with import <nixpkgs> {};
   home.file.".tmux.conf" = {
    text = ''
    set-option -g default-shell /run/current-system/sw/bin/fish
+   set-window-option -g mode-keys vi
    '';
   };
 
