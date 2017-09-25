@@ -31,6 +31,7 @@ with import <nixpkgs> {};
     pkgs.ansifilter # used to strip ANSI out in awesome extensions 
     pkgs.zim # desktop wiki
     pkgs.whois
+    pkgs.youtube-dl
   ];
 
 
