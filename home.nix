@@ -18,10 +18,11 @@ with import <nixpkgs> {};
     pkgs.dropbox
     pkgs.unstable.zeal
     pkgs.atom
+    pkgs.unstable.vscode
     # Older version of IntelliJ IDEA can't be downloaded from JetBrains anymore
     (pkgs.idea.idea-ultimate.overrideAttrs (attrs: { version = "2017.2.4"; src = pkgs.fetchurl { url = "https://download.jetbrains.com/idea/ideaIU-2017.2.4-no-jdk.tar.gz";
                                                                                                  sha256 = "15a4799ffde294d0f2fce0b735bbfe370e3d0327380a0efc45905241729898e3"; }; }))
-    pkgs.nixpkgs.tdesktop # Telegram 
+    pkgs.unstable.tdesktop # Telegram 
     pkgs.skype
     pkgs.unstable.chromium
     pkgs.unstable.alacritty pkgs.termite pkgs.tmux

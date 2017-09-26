@@ -6,11 +6,6 @@
               allowUnfree = true;
           };
       };
-      nixpkgs = import (fetchTarball https://nixos.org/channels/nixpkgs-unstable/nixexprs.tar.xz) {
-          config = {
-              allowUnfree = true;
-          };
-      };
       home-manager = import ./home-manager { inherit pkgs; };
   };
 }
