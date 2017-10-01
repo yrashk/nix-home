@@ -4,6 +4,7 @@ with import <nixpkgs> {};
 
 {
   home.packages = [
+    pkgs.gnupg
     pkgs.nix-repl
     pkgs.rlwrap
     pkgs.xorg.xdpyinfo # awesome/foggy seems to want it
@@ -40,6 +41,13 @@ with import <nixpkgs> {};
     userEmail = "yrashk@gmail.com";
   };
 
+
+  services.gpg-agent = {
+    enable = true;
+    enableSshSupport = true;
+    defaultCacheTtl = 1800;
+  };
+
   systemd.user.services.dropbox = {
     Unit = {
       Description = "Dropbox";
@@ -71,7 +79,10 @@ with import <nixpkgs> {};
   };
 
   home.file.".config/fish/config.fish" = {
-    text = ''
+    text = ''  
+    set -x GPG_TTY (tty)
+    gpg-connect-agent updatestartuptty /bye > /dev/null
+    set -x SSH_AUTH_SOCK $XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh
     set -x EDITOR vim
     if status --is-interactive
        set -g fish_user_abbreviations
