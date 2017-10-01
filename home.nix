@@ -71,6 +71,11 @@ with import <nixpkgs> {};
     text = builtins.readFile ./alacritty.yml;
   };
 
+  home.file.".config/termite/config" = {
+    text = builtins.readFile ./termite.config;
+  };
+
+
   home.file.".tmux.conf" = {
    text = ''
    set-option -g default-shell /run/current-system/sw/bin/fish
