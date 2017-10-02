@@ -32,6 +32,7 @@ with import <nixpkgs> {};
     pkgs.zim # desktop wiki
     pkgs.whois
     pkgs.youtube-dl
+    pkgs.gimp
   ];
 
 
