@@ -4,6 +4,7 @@ with import <nixpkgs> {};
 
 {
   home.packages = [
+    pkgs.wget
     pkgs.gnupg
     pkgs.nix-repl
     pkgs.rlwrap
