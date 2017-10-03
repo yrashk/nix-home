@@ -42,6 +42,7 @@ with import <nixpkgs> {};
     userEmail = "yrashk@gmail.com";
   };
 
+  programs.command-not-found.enable = true;
 
   services.gpg-agent = {
     enable = true;
@@ -94,6 +95,9 @@ with import <nixpkgs> {};
        set -g fish_user_abbreviations
        abbr h 'home-manager switch'
        abbr r 'sudo nixos-rebuild switch'
+    end
+    function __fish_command_not_found_handler --on-event fish_command_not_found
+       command-not-found $argv[1]
     end
     '';
   };
