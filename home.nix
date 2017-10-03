@@ -28,7 +28,6 @@ with import <nixpkgs> {};
     pkgs.alacritty pkgs.termite pkgs.tmux
     pkgs.translate-shell
     pkgs.xss-lock
-    pkgs.vimHugeX
     pkgs.ansifilter # used to strip ANSI out in awesome extensions 
     pkgs.zim # desktop wiki
     pkgs.whois
@@ -44,6 +43,20 @@ with import <nixpkgs> {};
   };
 
   programs.command-not-found.enable = true;
+
+  programs.vim = {
+    enable = true;
+    extraConfig = builtins.readFile vim/vimrc;
+    settings = {
+       number = true;
+    };
+    plugins = [
+      "sensible"
+      "vim-airline"
+      "The_NERD_tree" # file system explorer
+      "fugitive" "vim-gitgutter" # git 
+    ];
+  };
 
   services.gpg-agent = {
     enable = true;
@@ -119,11 +132,6 @@ with import <nixpkgs> {};
   home.file.".config/zim/style.conf" = {
      text = builtins.readFile zim/style.conf;
   };
-
-  home.file.".vimrc" = {
-    text = builtins.readFile vim/vimrc;
-  };
-
 
   home.file.".config/awesome/rc.lua" = {
      text = builtins.readFile awesome/rc.lua; 
