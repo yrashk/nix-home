@@ -22,6 +22,7 @@ with import <nixpkgs> {};
     pkgs.atom
     pkgs.vscode
     pkgs.idea.idea-ultimate
+    pkgs.gradle
     pkgs.tdesktop # Telegram 
     pkgs.skype
     pkgs.chromium
