@@ -109,6 +109,7 @@ with import <nixpkgs> {};
        set -g fish_user_abbreviations
        abbr h 'home-manager switch'
        abbr r 'sudo nixos-rebuild switch'
+       abbr gvim vim -g
     end
     function __fish_command_not_found_handler --on-event fish_command_not_found
        command-not-found $argv[1]
