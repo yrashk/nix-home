@@ -309,6 +309,8 @@ globalkeys = gears.table.join(
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
+    awful.key({ modkey, "Control" }, "e", function() awful.spawn("vim -g " .. os.getenv("HOME") .. "/.config/nixpkgs/") end,
+              {description = "edit home config", group = "nix"}),
     awful.key({ modkey, "Control" }, "h", function() 
 	          awful.spawn("termite -e \"home-manager switch\"", { floating = true })
 	        end,
