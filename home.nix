@@ -35,6 +35,7 @@ with import <nixpkgs> {};
     pkgs.whois
     pkgs.youtube-dl
     pkgs.gimp
+    pkgs.tla-plus.full
   ];
 
 
