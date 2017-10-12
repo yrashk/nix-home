@@ -79,6 +79,7 @@ with import <nixpkgs> {};
       Restart = "on-failure";
       RestartSec = 1;
       ExecStart = "${pkgs.unstable.dropbox}/bin/dropbox";
+      Environment = "QT_PLUGIN_PATH=/run/current-system/sw/${pkgs.qt5.qtbase.qtPluginPrefix}";
      };
 
     Install = {
