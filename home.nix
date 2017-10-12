@@ -1,7 +1,44 @@
 { pkgs, ... }:
 
 with import <nixpkgs> {};
+with builtins;
+with lib;
 
+let
+sanitiseName = stringAsChars (c: if elem c (lowerChars ++ upperChars)
+                                    then c else "");
+fetchGitHashless = args: stdenv.lib.overrideDerivation
+  # Use a dummy hash, to appease fetchgit's assertions
+    (fetchgit (args // { sha256 = hashString "sha256" args.url; }))
+
+      # Remove the hash-checking
+        (old: {
+         outputHash     = null;
+         outputHashAlgo = null;
+         outputHashMode = null;
+         sha256         = null;
+         });
+latestGitCommit = { url, ref ? "HEAD" }:
+     runCommand "repo-${sanitiseName ref}-${sanitiseName url}"
+     {
+        # Avoids caching. This is a cheap operation and needs to be up-to-date
+        version = toString currentTime;
+         # Required for SSL
+         GIT_SSL_CAINFO = "${cacert}/etc/ssl/certs/ca-bundle.crt";
+
+          buildInputs = [ git gnused ];
+     }
+     ''
+     REV=$(git ls-remote "${url}" "${ref}") || exit 1
+
+     printf '"%s"' $(echo "$REV"        |
+         head -n1           |
+         sed -e 's/\s.*//g' ) > "$out"
+     '';
+fetchLatestGit = { url, ref ? "HEAD" }@args:
+    with { rev = import (latestGitCommit { inherit url ref; }); };
+    fetchGitHashless (removeAttrs (args // { inherit rev; }) [ "ref" ]);
+in         
 {
   home.packages = [
     pkgs.unzip
@@ -148,11 +185,8 @@ with import <nixpkgs> {};
      text = builtins.readFile awesome/theme.lua; 
   };
 
-  home.file.".config/awesome/backgrounds".source = fetchFromGitHub {
-     owner = "yrashk";
-     repo = "backgrounds";
-     rev = "78969fe";
-     sha256 = "1n3yphisyj031rr4y2r12d2iv2v4cb8dk8krkbi0b4p2l6jp4zk7";
+  home.file.".config/awesome/backgrounds".source = fetchLatestGit {
+     url = "https://github.com/yrashk/backgrounds";
   };
 
   home.file.".config/awesome/foggy".source = fetchFromGitHub {
