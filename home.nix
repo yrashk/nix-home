@@ -45,6 +45,7 @@ in
     pkgs.wget
     pkgs.gnupg
     pkgs.blackbox pkgs.keybase
+    pkgs.udisks
     pkgs.mc
     pkgs.nix-repl
     pkgs.rlwrap
