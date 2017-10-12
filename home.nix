@@ -44,6 +44,7 @@ in
     pkgs.unzip
     pkgs.wget
     pkgs.gnupg
+    pkgs.wpa_supplicant_gui
     pkgs.blackbox pkgs.keybase
     pkgs.udisks
     pkgs.mc
