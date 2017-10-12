@@ -8,6 +8,7 @@ with import <nixpkgs> {};
     pkgs.wget
     pkgs.gnupg
     pkgs.blackbox pkgs.keybase
+    pkgs.mc
     pkgs.nix-repl
     pkgs.rlwrap
     pkgs.xorg.xdpyinfo # awesome/foggy seems to want it
