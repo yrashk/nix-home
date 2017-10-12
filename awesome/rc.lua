@@ -7,6 +7,7 @@ local wibox = require("wibox")
 local battery_widget = require("battery-widget")
 local volume_control = require("volume-control")
 local calendar = require("calendar")
+local net_widgets = require("net_widgets")
 -- Theme handling library
 local beautiful = require("beautiful")
 local foggy = require('foggy')
@@ -132,6 +133,9 @@ svgclock = wibox.widget.textclock("SVG %l%P ", 60, "Europe/Oslo")
 cal = calendar({})
 cal:attach(yvrclock)
 
+net_wireless = net_widgets.wireless({interface="wlp2s0", font="Iosevka"})
+net_internet = net_widgets.internet({indent = 0, timeout = 5})
+
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -235,6 +239,7 @@ awful.screen.connect_for_each_screen(function(s)
             yvrclock,
             bkkclock,
             svgclock,
+            net_internet, net_wireless,
             s.mylayoutbox,
         },
     }

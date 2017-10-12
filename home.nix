@@ -219,5 +219,11 @@ in
      sha256 = "1xfax18y4ddafzmwqp8qfs6k34nh163bwjxb7llvls5hxr79vr9s";
   };
 
+  home.file.".config/awesome/net_widgets".source = fetchFromGitHub {
+     owner = "pltanton";
+     repo = "net_widgets";
+     rev = "82d1ecd";
+     sha256 = "13c9kcc8fj4qjsbx14mfdhav5ymqxdjbng6lpnc5ycgfpyap2xqf";
+  };
 
 }
