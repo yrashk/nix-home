@@ -19,7 +19,7 @@ with import <nixpkgs> {};
     pkgs.ncdu # Disk space usage analyzer
     pkgs.ripgrep # rg, fast grepper
     pkgs.rtv # Reddit
-    pkgs.dropbox
+    pkgs.unstable.dropbox
     pkgs.zeal
     pkgs.atom
     pkgs.vscode
