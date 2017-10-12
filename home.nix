@@ -78,7 +78,7 @@ with import <nixpkgs> {};
     Service = {
       Restart = "on-failure";
       RestartSec = 1;
-      ExecStart = "${pkgs.dropbox}/bin/dropbox";
+      ExecStart = "${pkgs.unstable.dropbox}/bin/dropbox";
      };
 
     Install = {
