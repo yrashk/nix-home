@@ -77,6 +77,7 @@ in
     pkgs.youtube-dl
     pkgs.gimp
     pkgs.tla-plus.full
+    pkgs.haskellPackages.idris
   ];
 
 
@@ -95,6 +96,7 @@ in
        number = true;
     };
     plugins = [
+      "idris-vim"
       "sensible"
       "vim-airline"
       "The_NERD_tree" # file system explorer
