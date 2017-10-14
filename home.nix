@@ -78,6 +78,7 @@ in
     pkgs.gimp
     pkgs.tla-plus.full
     pkgs.haskellPackages.idris
+    pkgs.tetex
   ];
 
 
