@@ -183,6 +183,13 @@ in
      text = builtins.readFile zim/style.conf;
   };
 
+  home.file.".local/share/applications/defaults.list" = {
+     text = ''
+     [Default Applications]
+     application/pdf=zathura.desktop
+     '';
+  };
+
   home.file.".config/awesome/rc.lua" = {
      text = builtins.readFile awesome/rc.lua; 
   };
