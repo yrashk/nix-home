@@ -77,6 +77,7 @@ in
     pkgs.youtube-dl
     pkgs.gimp
     pkgs.tla-plus.full
+    pkgs.ghc pkgs.cabal-install pkgs.stack
     pkgs.haskellPackages.idris
     pkgs.tetex
   ];
