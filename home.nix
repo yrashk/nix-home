@@ -82,6 +82,7 @@ in
     pkgs.ghc pkgs.cabal-install pkgs.stack
     pkgs.haskellPackages.idris
     pkgs.tetex
+    pkgs.funnelweb
   ];
 
 
