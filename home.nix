@@ -76,6 +76,7 @@ in
     pkgs.whois
     pkgs.youtube-dl
     pkgs.gimp
+    pkgs.gcc
     pkgs.rustChannels.stable.rust 
     pkgs.tla-plus.full
     pkgs.ghc pkgs.cabal-install pkgs.stack
