@@ -67,7 +67,7 @@ in
     pkgs.gradle
     pkgs.tdesktop # Telegram 
     pkgs.skype
-    pkgs.chromium
+    pkgs.chromium pkgs.firefox
     pkgs.alacritty pkgs.termite pkgs.tmux
     pkgs.translate-shell
     pkgs.xss-lock
