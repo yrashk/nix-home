@@ -59,7 +59,7 @@ in
     pkgs.ncdu # Disk space usage analyzer
     pkgs.ripgrep # rg, fast grepper
     pkgs.rtv # Reddit
-    pkgs.unstable.dropbox
+    pkgs.dropbox
     pkgs.zeal
     pkgs.atom
     pkgs.vscode
@@ -125,7 +125,7 @@ in
     Service = {
       Restart = "on-failure";
       RestartSec = 1;
-      ExecStart = "${pkgs.unstable.dropbox}/bin/dropbox";
+      ExecStart = "${pkgs.dropbox}/bin/dropbox";
       Environment = "QT_PLUGIN_PATH=/run/current-system/sw/${pkgs.qt5.qtbase.qtPluginPrefix}";
      };
 
