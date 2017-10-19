@@ -83,6 +83,7 @@ in
     pkgs.haskellPackages.idris
     pkgs.tetex
     pkgs.funnelweb
+    pkgs.vagrant
   ];
 
 
