@@ -125,13 +125,13 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-yvrclock = wibox.widget.textclock()
-bkkclock = wibox.widget.textclock("BKK %l%P ", 60, "Asia/Bangkok")
+localclock = wibox.widget.textclock()
+yvrclock = wibox.widget.textclock("YVR %l%P ", 60, "America/Vancouver")
 svgclock = wibox.widget.textclock("SVG %l%P ", 60, "Europe/Oslo")
 
 
 cal = calendar({})
-cal:attach(yvrclock)
+cal:attach(localclock)
 
 net_wireless = net_widgets.wireless({interface="wlp2s0", font="Iosevka", onclick = "wpa_gui"})
 net_internet = net_widgets.internet({indent = 0, timeout = 5})
@@ -236,8 +236,8 @@ awful.screen.connect_for_each_screen(function(s)
             battery_widget({adapter = "BAT0"}).widget,
             mykeyboardlayout,
             wibox.widget.systray(),
+            localclock,
             yvrclock,
-            bkkclock,
             svgclock,
             net_internet, net_wireless,
             s.mylayoutbox,
