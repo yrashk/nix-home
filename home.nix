@@ -88,6 +88,7 @@ in
 
 
   programs.git = {
+    package = pkgs.gitAndTools.gitFull;
     enable = true;
     userName = "Yurii Rashkovskii";
     userEmail = "yrashk@gmail.com";
