@@ -9,7 +9,6 @@
               allowUnfree = true;
           };
       };
-      home-manager = import ./home-manager { inherit pkgs; };
 
       # https://github.com/NixOS/nixpkgs/issues/18640
       tla-plus = callPackage pkgs/tla-plus { inherit pkgs; };

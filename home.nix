@@ -88,6 +88,8 @@ in
   ];
 
 
+  programs.home-manager.enable = true;
+
   programs.git = {
     package = pkgs.gitAndTools.gitFull;
     enable = true;
