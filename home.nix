@@ -150,13 +150,9 @@ in
 
   home.file = { 
   
-  ".config/alacritty/alacritty.yml" = {
-    text = builtins.readFile ./alacritty.yml;
-  };
+  ".config/alacritty/alacritty.yml".source = ./alacritty.yml;
 
-  ".config/termite/config" = {
-    text = builtins.readFile ./termite.config;
-  };
+  ".config/termite/config".source = ./termite.config;
 
 
   ".tmux.conf" = {
@@ -185,21 +181,13 @@ in
   };
 
 
-  ".config/fish/functions/nixsh.fish" = {
-     text = builtins.readFile fish/nixsh.fish;
-  };
+  ".config/fish/functions/nixsh.fish".source = fish/nixsh.fish;
 
-  ".config/fish/functions/fish_prompt.fish" = {
-     text = builtins.readFile fish/fish_prompt.fish;
-  };
+  ".config/fish/functions/fish_prompt.fish".source = fish/fish_prompt.fish;
 
-  ".config/zim/preferences.conf" = {
-     text = builtins.readFile zim/preferences.conf;
-  };
+  ".config/zim/preferences.conf".source = zim/preferences.conf;
 
-  ".config/zim/style.conf" = {
-     text = builtins.readFile zim/style.conf;
-  };
+  ".config/zim/style.conf".source = zim/style.conf;
 
   ".local/share/applications/defaults.list" = {
      text = ''
@@ -208,13 +196,9 @@ in
      '';
   };
 
-  ".config/awesome/rc.lua" = {
-     text = builtins.readFile awesome/rc.lua; 
-  };
+  ".config/awesome/rc.lua".source = awesome/rc.lua; 
 
-  ".config/awesome/theme.lua" = {
-     text = builtins.readFile awesome/theme.lua; 
-  };
+  ".config/awesome/theme.lua".source = awesome/theme.lua; 
 
   ".config/awesome/backgrounds".source = fetchLatestGit {
      url = "https://github.com/yrashk/backgrounds";
