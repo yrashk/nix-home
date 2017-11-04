@@ -3,7 +3,7 @@
 with import <nixpkgs> {};
 with builtins;
 with lib;
-with import home-manager/modules/lib/dag.nix { inherit lib; };
+with import <home-manager/modules/lib/dag.nix> { inherit lib; };
 
 let
 sanitiseName = stringAsChars (c: if elem c (lowerChars ++ upperChars)
