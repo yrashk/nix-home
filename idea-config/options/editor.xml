@@ -1,0 +1,12 @@
+<application>
+  <component name="DefaultFont">
+    <option name="FONT_SIZE" value="16" />
+    <option name="FONT_FAMILY" value="Iosevka" />
+    <option name="FONT_SCALE" value="1.0833334" />
+    <option name="USE_LIGATURES" value="true" />
+  </component>
+  <component name="SqlEditorOptions">
+    <option name="concatenateStringsOnEnter" value="true" />
+    <option name="qualificationType" value="On collisions" />
+  </component>
+</application>

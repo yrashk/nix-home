@@ -38,6 +38,10 @@ latestGitCommit = { url, ref ? "HEAD" }:
 fetchLatestGit = { url, ref ? "HEAD" }@args:
     with { rev = import (latestGitCommit { inherit url ref; }); };
     fetchGitHashless (removeAttrs (args // { inherit rev; }) [ "ref" ]);
+sourceDirectory = path: mapAttrs
+  (name: value: 
+    { source = path + "/${name}"; })
+  (readDir path);
 in         
 {
   home.packages = [
@@ -144,23 +148,25 @@ in
 
   };
 
-  home.file.".config/alacritty/alacritty.yml" = {
+  home.file = { 
+  
+  ".config/alacritty/alacritty.yml" = {
     text = builtins.readFile ./alacritty.yml;
   };
 
-  home.file.".config/termite/config" = {
+  ".config/termite/config" = {
     text = builtins.readFile ./termite.config;
   };
 
 
-  home.file.".tmux.conf" = {
+  ".tmux.conf" = {
    text = ''
    set-option -g default-shell /run/current-system/sw/bin/fish
    set-window-option -g mode-keys vi
    '';
   };
 
-  home.file.".config/fish/config.fish" = {
+  ".config/fish/config.fish" = {
     text = ''  
     set -x GPG_TTY (tty)
     gpg-connect-agent updatestartuptty /bye > /dev/null
@@ -179,74 +185,80 @@ in
   };
 
 
-  home.file.".config/fish/functions/nixsh.fish" = {
+  ".config/fish/functions/nixsh.fish" = {
      text = builtins.readFile fish/nixsh.fish;
   };
 
-  home.file.".config/fish/functions/fish_prompt.fish" = {
+  ".config/fish/functions/fish_prompt.fish" = {
      text = builtins.readFile fish/fish_prompt.fish;
   };
 
-  home.file.".config/zim/preferences.conf" = {
+  ".config/zim/preferences.conf" = {
      text = builtins.readFile zim/preferences.conf;
   };
 
-  home.file.".config/zim/style.conf" = {
+  ".config/zim/style.conf" = {
      text = builtins.readFile zim/style.conf;
   };
 
-  home.file.".local/share/applications/defaults.list" = {
+  ".local/share/applications/defaults.list" = {
      text = ''
      [Default Applications]
      application/pdf=zathura.desktop
      '';
   };
 
-  home.file.".config/awesome/rc.lua" = {
+  ".config/awesome/rc.lua" = {
      text = builtins.readFile awesome/rc.lua; 
   };
 
-  home.file.".config/awesome/theme.lua" = {
+  ".config/awesome/theme.lua" = {
      text = builtins.readFile awesome/theme.lua; 
   };
 
-  home.file.".config/awesome/backgrounds".source = fetchLatestGit {
+  ".config/awesome/backgrounds".source = fetchLatestGit {
      url = "https://github.com/yrashk/backgrounds";
   };
 
-  home.file.".config/awesome/foggy".source = fetchFromGitHub {
+  ".config/awesome/foggy".source = fetchFromGitHub {
      owner = "k3rni";
      repo = "foggy";
      rev = "fd76b28";
      sha256 = "0lfm7kczgdlzfcc14qj8539y679lf5qcydz0xv72szn7h9wzaaiz";
   };
 
-  home.file.".config/awesome/battery-widget".source = fetchFromGitHub {
+  ".config/awesome/battery-widget".source = fetchFromGitHub {
      owner = "deficient";
      repo = "battery-widget";
      rev = "4152487";
      sha256 = "14p4c37m6s88d2dkgkv1b7xk2paj06cfdadphmhx2m2gr7c9c01f";
   };
 
-  home.file.".config/awesome/volume-control".source = fetchFromGitHub {
+  ".config/awesome/volume-control".source = fetchFromGitHub {
      owner = "deficient";
      repo = "volume-control";
      rev = "137b19e";
      sha256 = "1xsxcmsivnlmqckcaz9n5gc4lgxpjm410cfp65s0s4yr5x2y0qhs";
   };
 
-  home.file.".config/awesome/calendar".source = fetchFromGitHub {
+  ".config/awesome/calendar".source = fetchFromGitHub {
      owner = "yrashk";
      repo = "calendar";
      rev = "1ed19a3";
      sha256 = "1xfax18y4ddafzmwqp8qfs6k34nh163bwjxb7llvls5hxr79vr9s";
   };
 
-  home.file.".config/awesome/net_widgets".source = fetchFromGitHub {
+  ".config/awesome/net_widgets".source = fetchFromGitHub {
      owner = "pltanton";
      repo = "net_widgets";
      rev = "82d1ecd";
      sha256 = "13c9kcc8fj4qjsbx14mfdhav5ymqxdjbng6lpnc5ycgfpyap2xqf";
   };
+
+  # IntelliJ IDEA
+  ".IntelliJIdea2017.2/config/idea.key".source = private/idea.key;
+  } //
+  (mapAttrs' (name: value: nameValuePair (".IntelliJIdea2017.2/config/" + name) value)
+   (sourceDirectory ./idea-config)); 
 
 }

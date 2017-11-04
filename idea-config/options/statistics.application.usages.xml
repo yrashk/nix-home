@@ -1,0 +1,21 @@
+<application>
+  <component name="UsageTrigger">
+    <counts>
+      <entry feature="CreateFile.CreateFileAction" count="1" />
+      <entry feature="StripeButton[Version_Control].hidden" count="1" />
+      <entry feature="StripeButton[Version_Control].shown" count="1" />
+      <entry feature="diff.DiffSettings.Tool.Side-by-side viewer" count="1" />
+      <entry feature="diff.DiffSettings.Tool.Unified viewer" count="1" />
+      <entry feature="execute.JUnit.Run" count="1" />
+      <entry feature="execute.JetRunConfigurationType.Debug" count="9" />
+      <entry feature="ide.help.ideaInterface.editor" count="4" />
+      <entry feature="ide.settings.Font" count="4" />
+      <entry feature="ide.settings.Keymap" count="3" />
+      <entry feature="ide.settings.Plugins" count="1" />
+      <entry feature="ide.settings.Rust" count="19" />
+      <entry feature="idea.caches.invalidated" count="4" />
+      <entry feature="ideaapp.started" count="40" />
+      <entry feature="welcome.screen.WelcomeScreen.OpenProject" count="2" />
+    </counts>
+  </component>
+</application>

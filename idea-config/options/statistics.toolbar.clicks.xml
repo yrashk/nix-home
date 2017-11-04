@@ -1,0 +1,17 @@
+<application>
+  <component name="ToolbarClicksCollector">
+    <counts>
+      <entry action="Rerun@DebuggerToolbar" count="8" />
+      <entry action="Resume@DebuggerToolbar" count="5" />
+      <entry action="com.intellij.diff.impl.DiffRequestProcessor$MyNextDifferenceAction@DiffToolbar" count="1" />
+      <entry action="com.intellij.execution.ui.actions.CloseAction@ConsoleRunner" count="1" />
+      <entry action="com.intellij.find.SearchTextArea$ShowHistoryAction@unknown" count="2" />
+      <entry action="com.intellij.find.editorHeaderActions.NextOccurrenceAction@EditorToolbar" count="12" />
+      <entry action="com.intellij.find.editorHeaderActions.PrevOccurrenceAction@EditorToolbar" count="2" />
+      <entry action="com.intellij.notification.EventLogToolWindowFactory$EditNotificationSettings@EventLog" count="1" />
+      <entry action="com.intellij.openapi.vcs.changes.ui.ChangesBrowserBase$2@ChangesBrowser" count="1" />
+      <entry action="com.intellij.ui.AnActionButton$AnActionButtonWrapper@ToolbarDecorator" count="1" />
+      <entry action="org.jetbrains.kotlin.console.actions.BuildAndRestartConsoleAction@ConsoleRunner" count="33" />
+    </counts>
+  </component>
+</application>
