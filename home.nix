@@ -3,6 +3,7 @@
 with import <nixpkgs> {};
 with builtins;
 with lib;
+with import home-manager/modules/lib/dag.nix { inherit lib; };
 
 let
 sanitiseName = stringAsChars (c: if elem c (lowerChars ++ upperChars)
@@ -239,10 +240,13 @@ in
      sha256 = "13c9kcc8fj4qjsbx14mfdhav5ymqxdjbng6lpnc5ycgfpyap2xqf";
   };
 
-  # IntelliJ IDEA
-  ".IntelliJIdea2017.2/config/idea.key".source = private/idea.key;
   } //
+  # IntelliJ IDEA
   (mapAttrs' (name: value: nameValuePair (".IntelliJIdea2017.2/config/" + name) value)
    (sourceDirectory ./idea-config)); 
+
+  home.activation.copyIdeaKey = dagEntryAfter ["writeBoundary"] ''
+      install -D -m600 ${./private/idea.key} $HOME/.IntelliJIdea2017.2/config/idea.key
+  '';
 
 }
