@@ -39,10 +39,33 @@ latestGitCommit = { url, ref ? "HEAD" }:
 fetchLatestGit = { url, ref ? "HEAD" }@args:
     with { rev = import (latestGitCommit { inherit url ref; }); };
     fetchGitHashless (removeAttrs (args // { inherit rev; }) [ "ref" ]);
-sourceDirectory = path: mapAttrs
-  (name: value: 
-    { source = path + "/${name}"; })
+recursiveReadDir = path:
+  mapAttrs'
+  (name: value:
+    if value == "directory" then
+      nameValuePair name (recursiveReadDir (path + "/${name}"))
+    else
+      nameValuePair name value)
   (readDir path);
+foldAttrsRecursively = f: init: attrs: 
+   let folder = (a: n:
+       let n' = if (isList n) then n else [n];
+           v = getAttrFromPath n' attrs;
+       in
+       if isAttrs v then
+         foldl' folder a (map (n_: n' ++ [n_]) (attrNames v))
+       else
+         f a (nameValuePair n' v) 
+       );
+   in
+   foldl' folder init (attrNames attrs);
+sourceDirectory = path: foldAttrsRecursively
+  (attrs: pair: 
+    let path' = concatStringsSep "/" pair.name;
+    in
+    attrs // setAttrByPath [path'] { source = path + "/${path'}"; })
+  {}
+  (recursiveReadDir path);
 in         
 {
   home.packages = [
