@@ -1,1 +1,2 @@
+private/atom-exception-reporting
 private/idea.key
