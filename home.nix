@@ -39,33 +39,6 @@ latestGitCommit = { url, ref ? "HEAD" }:
 fetchLatestGit = { url, ref ? "HEAD" }@args:
     with { rev = import (latestGitCommit { inherit url ref; }); };
     fetchGitHashless (removeAttrs (args // { inherit rev; }) [ "ref" ]);
-recursiveReadDir = path:
-  mapAttrs'
-  (name: value:
-    if value == "directory" then
-      nameValuePair name (recursiveReadDir (path + "/${name}"))
-    else
-      nameValuePair name value)
-  (readDir path);
-foldAttrsRecursively = f: init: attrs: 
-   let folder = (a: n:
-       let n' = if (isList n) then n else [n];
-           v = getAttrFromPath n' attrs;
-       in
-       if isAttrs v then
-         foldl' folder a (map (n_: n' ++ [n_]) (attrNames v))
-       else
-         f a (nameValuePair n' v) 
-       );
-   in
-   foldl' folder init (attrNames attrs);
-sourceDirectory = path: foldAttrsRecursively
-  (attrs: pair: 
-    let path' = concatStringsSep "/" pair.name;
-    in
-    attrs // setAttrByPath [path'] { source = path + "/${path'}"; })
-  {}
-  (recursiveReadDir path);
 in         
 {
   home.packages = [
@@ -263,10 +236,12 @@ in
      sha256 = "13c9kcc8fj4qjsbx14mfdhav5ymqxdjbng6lpnc5ycgfpyap2xqf";
   };
 
-  } //
-  # IntelliJ IDEA
-  (mapAttrs' (name: value: nameValuePair (".IntelliJIdea2017.2/config/" + name) value)
-   (sourceDirectory ./idea-config)); 
+  ".IntelliJIdea2017.2/config" = {
+     source = ./idea-config;
+     recursive = true;
+  };
+
+  };
 
   home.activation.copyIdeaKey = dagEntryAfter ["writeBoundary"] ''
       install -D -m600 ${./private/idea.key} $HOME/.IntelliJIdea2017.2/config/idea.key
