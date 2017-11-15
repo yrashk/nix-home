@@ -67,7 +67,7 @@ in
     pkgs.idea.idea-ultimate pkgs.jdk
     pkgs.gradle
     pkgs.tdesktop # Telegram 
-    pkgs.skype
+    pkgs.skypeforlinux
     pkgs.chromium pkgs.firefox
     pkgs.alacritty pkgs.termite pkgs.tmux
     pkgs.translate-shell

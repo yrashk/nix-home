@@ -19,5 +19,6 @@
           inherit (pkgs.emacs25Packages) proofgeneral;
           polyml = polyml-5-4;
       };
+      skypeforlinux = unstable.skypeforlinux;
   };
 }
