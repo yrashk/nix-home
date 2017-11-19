@@ -133,7 +133,7 @@ svgclock = wibox.widget.textclock("SVG %l%P ", 60, "Europe/Oslo")
 cal = calendar({})
 cal:attach(localclock)
 
-net_wireless = net_widgets.wireless({interface="wlp2s0", font="Iosevka", onclick = "wpa_gui"})
+net_wireless = net_widgets.wireless({interface="wlp2s0", font="Iosevka", onclick = "flock -n /tmp/wpa_gui.lock wpa_gui"})
 net_internet = net_widgets.internet({indent = 0, timeout = 5})
 
 -- Create a wibox for each screen and add it
