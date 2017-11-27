@@ -86,6 +86,8 @@ in
     pkgs.funnelweb
     pkgs.plantuml
     pkgs.vagrant
+    pkgs.gdb
+    pkgs.gnumake
   ];
 
 
