@@ -64,7 +64,7 @@ in
     pkgs.zeal
     pkgs.atom
     pkgs.vscode
-    pkgs.idea.idea-ultimate pkgs.jdk
+    pkgs.unstable.idea.idea-ultimate pkgs.jdk
     pkgs.gradle
     pkgs.tdesktop # Telegram 
     pkgs.skypeforlinux
