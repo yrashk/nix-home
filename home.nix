@@ -78,7 +78,7 @@ in
     pkgs.youtube-dl
     pkgs.gimp
     pkgs.gcc
-    pkgs.rustChannels.stable.rust 
+    (pkgs.rustChannels.stable.rust.override { extensions = ["rust-src"]; })
     pkgs.tla-plus.full
     pkgs.ghc pkgs.cabal-install pkgs.stack
     pkgs.haskellPackages.idris
