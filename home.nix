@@ -88,6 +88,7 @@ in
     pkgs.vagrant
     pkgs.gdb
     pkgs.gnumake
+    pkgs.gpxsee
   ];
 
 
