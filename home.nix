@@ -239,7 +239,7 @@ in
      sha256 = "13c9kcc8fj4qjsbx14mfdhav5ymqxdjbng6lpnc5ycgfpyap2xqf";
   };
 
-  ".IntelliJIdea2017.2/config" = {
+  ".IntelliJIdea2017.3/config" = {
      source = ./idea-config;
      recursive = true;
   };
@@ -247,7 +247,7 @@ in
   };
 
   home.activation.copyIdeaKey = dagEntryAfter ["writeBoundary"] ''
-      install -D -m600 ${./private/idea.key} $HOME/.IntelliJIdea2017.2/config/idea.key
+      install -D -m600 ${./private/idea.key} $HOME/.IntelliJIdea2017.3/config/idea.key
   '';
 
 }
