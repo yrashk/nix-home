@@ -148,6 +148,22 @@ in
 
   };
 
+  systemd.user.services.syndaemon = {
+    Unit = {
+      Description = "syndaemon";
+      After = [ "graphical-session-pre.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+
+    Service = {
+      ExecStart = "${pkgs.xorg.xf86inputsynaptics}/bin/syndaemon -K";
+    };
+
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+  };
+
   home.file = { 
   
   ".config/alacritty/alacritty.yml".source = ./alacritty.yml;
