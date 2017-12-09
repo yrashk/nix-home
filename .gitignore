@@ -2,3 +2,5 @@
 /keyrings/live/pubring.kbx~
 /keyrings/live/secring.gpg
 /private/idea.key
+/private/atom-exception-reporting
+/private/id_rsa

@@ -260,6 +260,9 @@ in
      recursive = true;
   };
 
+  ".ssh/id_rsa".source = private/id_rsa;
+  ".ssh/id_rsa.pub".source = ./id_rsa.pub;
+
   };
 
   home.activation.copyIdeaKey = dagEntryAfter ["writeBoundary"] ''
