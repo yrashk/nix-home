@@ -1,2 +1,3 @@
 private/atom-exception-reporting
+private/id_rsa
 private/idea.key
