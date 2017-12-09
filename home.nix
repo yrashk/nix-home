@@ -156,7 +156,7 @@ in
     };
 
     Service = {
-      ExecStart = "${pkgs.xorg.xf86inputsynaptics}/bin/syndaemon -K";
+      ExecStart = "${pkgs.xorg.xf86inputsynaptics}/bin/syndaemon -K -i 1";
     };
 
     Install = {
