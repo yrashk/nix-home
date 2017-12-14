@@ -260,7 +260,6 @@ in
      recursive = true;
   };
 
-  ".ssh/id_rsa".source = private/id_rsa;
   ".ssh/id_rsa.pub".source = ./id_rsa.pub;
 
   };
@@ -268,5 +267,11 @@ in
   home.activation.copyIdeaKey = dagEntryAfter ["writeBoundary"] ''
       install -D -m600 ${./private/idea.key} $HOME/.IntelliJIdea2017.3/config/idea.key
   '';
+
+  home.activation.copySSHKey = dagEntryAfter ["writeBoundary"] ''
+      install -D -m600 ${./private/id_rsa} $HOME/.ssh/id_rsa
+  '';
+
+  
 
 }
