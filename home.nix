@@ -89,6 +89,7 @@ in
     pkgs.gdb
     pkgs.gnumake
     pkgs.gpxsee
+    pkgs.clips
   ];
 
 
