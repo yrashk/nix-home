@@ -80,6 +80,13 @@ function fish_prompt --description 'Write out the prompt'
        echo -n "⇨  "
     end
 
+    if set -q SSH_TTY
+       set_color yellow
+       echo -n (hostname)
+       echo -n " "
+       set_color normal
+    end
+
     # PWD
     set_color $color_cwd
     echo -n (prompt_pwd)
