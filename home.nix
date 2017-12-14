@@ -90,6 +90,7 @@ in
     pkgs.gnumake
     pkgs.gpxsee
     pkgs.clips
+    pkgs.mosh
   ];
 
 
