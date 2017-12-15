@@ -91,6 +91,7 @@ in
     pkgs.gpxsee
     pkgs.clips
     pkgs.mosh
+    pkgs.emacs
   ];
 
 
@@ -256,6 +257,20 @@ in
      rev = "82d1ecd";
      sha256 = "13c9kcc8fj4qjsbx14mfdhav5ymqxdjbng6lpnc5ycgfpyap2xqf";
   };
+
+  # spacemacs
+  ".emacs.d" = {
+     source = fetchFromGitHub {
+       owner = "syl20bnr";
+       repo = "spacemacs";
+       rev = "v0.200.10";
+       sha256 = "0b20sj5d2dflwkrdyrc6g1fg3c4mzh8al4ppxav7x2flk86sajyc";
+     };
+     recursive = true;
+  }; 
+  ".spacemacs".source = ./spacemacs;
+   
+
 
   ".IntelliJIdea2017.3/config" = {
      source = ./idea-config;
