@@ -289,6 +289,10 @@ in
       install -D -m600 ${./private/id_rsa} $HOME/.ssh/id_rsa
   '';
 
+  home.activation.authorizedKeys = dagEntryAfter ["writeBoundary"] ''
+      install -D -m600 ${./id_rsa.pub} $HOME/.ssh/authorized_keys
+  '';
+
   
 
 }
