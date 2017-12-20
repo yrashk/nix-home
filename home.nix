@@ -102,6 +102,10 @@ in
     enable = true;
     userName = "Yurii Rashkovskii";
     userEmail = "yrashk@gmail.com";
+    signing = {
+      key = "yrashk@keybase.io";
+      signByDefault = true;
+    };
   };
 
   programs.command-not-found.enable = true;
