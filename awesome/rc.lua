@@ -136,6 +136,11 @@ cal:attach(localclock)
 net_wireless = net_widgets.wireless({interface="wlp2s0", font="Iosevka", onclick = "flock -n /tmp/wpa_gui.lock wpa_gui"})
 net_internet = net_widgets.internet({indent = 0, timeout = 5})
 
+
+ifconfig, ifconfig_t = awful.widget.watch('curl ifconfig.co/city', 60)
+ifconfig:connect_signal("button::press", function() 
+        ifconfig_t:emit_signal("timeout")
+end)
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -239,6 +244,9 @@ awful.screen.connect_for_each_screen(function(s)
             localclock,
             yvrclock,
             svgclock,
+            awful.widget.watch('cat /var/run/pia', 1),
+            wibox.widget.textbox(" "),
+            ifconfig,
             net_internet, net_wireless,
             s.mylayoutbox,
         },
