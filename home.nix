@@ -103,7 +103,7 @@ in
     userName = "Yurii Rashkovskii";
     userEmail = "yrashk@gmail.com";
     signing = {
-      key = "yrashk@keybase.io";
+      key = "me@yrashk.com";
       signByDefault = true;
     };
   };
