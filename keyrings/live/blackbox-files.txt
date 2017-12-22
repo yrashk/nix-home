@@ -1,3 +1,4 @@
+mail/pass-gmail
 mail/pass-yrashk
 private/atom-exception-reporting
 private/id_rsa
