@@ -141,6 +141,14 @@ ifconfig, ifconfig_t = awful.widget.watch('curl ifconfig.co/city', 60)
 ifconfig:connect_signal("button::press", function() 
         ifconfig_t:emit_signal("timeout")
 end)
+
+emails = awful.widget.watch('notmuch count tag:unread', 10, function(widget, stdout) 
+              widget:set_text("✉ " .. stdout)
+            end)
+emails:connect_signal("button:press", function()
+        awful.spawn("emacs -f notmuch")
+end)
+
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -237,9 +245,7 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            awful.widget.watch('notmuch count tag:unread', 10, function(widget, stdout) 
-              widget:set_text("✉ " .. stdout)
-            end),
+            emails,
             volumecfg.widget,
             battery_widget({adapter = "BAT0"}).widget,
             mykeyboardlayout,

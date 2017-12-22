@@ -1,0 +1,40 @@
+IMAPAccount yrashk
+Host mail.etceteralabs.com
+User me@yrashk.com
+PassCmd "cat ~/.mail/pass-yrashk"
+SSLType IMAPS
+
+IMAPStore yrashk-remote
+Account yrashk
+
+MaildirStore local
+Path ~/.mail/
+Inbox ~/.mail/Inbox
+
+Channel yrashk
+Master :yrashk-remote:
+Slave :local:
+Patterns *
+Create Both
+SyncState *
+
+IMAPAccount gmail
+Host imap.gmail.com
+User yrashk@gmail.com
+PassCmd "cat ~/.mail/pass-gmail"
+SSLType IMAPS
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Path ~/.mail/gmail
+Inbox ~/.mail/gmail/Inbox
+
+
+Channel gmail
+Master :gmail-remote:
+Slave :gmail-local:
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
+Create Both 
+SyncState *
