@@ -346,7 +346,7 @@ in
   '';
 
   home.activation.mailPasswords = dagEntryAfter ["writeBoundary"] ''
-     mkdir -p $HOME/.mail
+     mkdir -p $HOME/.mail/gmail
      install -m600 ${./mail/pass-yrashk} $HOME/.mail/pass-yrashk
      install -m600 ${./mail/pass-gmail} $HOME/.mail/pass-gmail
   '';
