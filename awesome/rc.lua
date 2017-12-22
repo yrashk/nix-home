@@ -126,7 +126,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- {{{ Wibar
 -- Create a textclock widget
 localclock = wibox.widget.textclock()
-yvrclock = wibox.widget.textclock("YVR %l%P ", 60, "America/Vancouver")
+bkkclock = wibox.widget.textclock("BKK %l%P ", 60, "Asia/Bangkok")
 svgclock = wibox.widget.textclock("SVG %l%P ", 60, "Europe/Oslo")
 
 
@@ -242,7 +242,7 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             wibox.widget.systray(),
             localclock,
-            yvrclock,
+            bkkclock,
             svgclock,
             awful.widget.watch('cat /var/run/pia', 1),
             wibox.widget.textbox(" "),
