@@ -39,6 +39,17 @@ latestGitCommit = { url, ref ? "HEAD" }:
 fetchLatestGit = { url, ref ? "HEAD" }@args:
     with { rev = import (latestGitCommit { inherit url ref; }); };
     fetchGitHashless (removeAttrs (args // { inherit rev; }) [ "ref" ]);
+notmuch-apply = stdenv.mkDerivation {
+  name = "notmuch-apply";
+  phases = [ "installPhase" ];
+  buildInputs = [ notmuch bash makeWrapper];
+  installPhase = ''
+    mkdir -p $out/bin
+    install -m777 ${./mail/notmuch} $out/notmuch-apply
+    sed -i s/notmuch/"${escape ["/"] (toString notmuch)}\/bin\/notmuch"/g $out/notmuch-apply
+    makeWrapper $out/notmuch-apply $out/bin/notmuch-apply
+  '';
+};
 in         
 {
   home.packages = [
@@ -92,6 +103,7 @@ in
     pkgs.clips
     pkgs.mosh
     pkgs.emacs
+    isync notmuch notmuch-apply msmtp
   ];
 
 
@@ -168,6 +180,26 @@ in
 
     Install = {
       WantedBy = [ "graphical-session.target" ];
+    };
+  };
+
+  systemd.user.services.fetchmail = {
+    Unit = {
+      Description = "fetch mail";
+    };
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.isync}/bin/mbsync -a";
+      ExecStartPost = "${notmuch-apply}/bin/notmuch-apply";
+      # we want notmuch applied even if there was a problem
+      SuccessExitStatus = "0 1";
+    };
+  };
+
+  systemd.user.timers.fetchmail = {
+    Timer = {
+     Unit = "fetchmail.service";
+     OnCalendar = "*:0/15";
     };
   };
 
@@ -267,13 +299,29 @@ in
      source = fetchFromGitHub {
        owner = "syl20bnr";
        repo = "spacemacs";
-       rev = "v0.200.10";
-       sha256 = "0b20sj5d2dflwkrdyrc6g1fg3c4mzh8al4ppxav7x2flk86sajyc";
+       rev = "5ec172d7bdbb71d84d0189a9751665f3cb9977af";
+       sha256 = "0zy0n0sc691q7gbvf1fs6wg3p53gza1nq1awmja30mj86mpkdnjz";
      };
      recursive = true;
   }; 
   ".spacemacs".source = ./spacemacs;
-   
+  
+  ".mbsyncrc".source = mail/mbsyncrc;
+  ".notmuch-config".source = mail/notmuch-config;
+  ".mailrc".text = ''
+  set sendmail="${msmtp}/bin/msmtp";
+  '';
+  ".msmtprc".text = ''
+  defaults
+  port 587
+  tls on
+  account yrashk
+  host mail.etceteralabs.com
+  from me@yrashk.com
+  auth on
+  user me@yrashk.com
+  passwordeval ${gnupg}/bin/gpg2  --no-tty -q -d ${mail/pass-yrashk.gpg}
+  '';
 
 
   ".IntelliJIdea2017.3/config" = {
@@ -295,6 +343,12 @@ in
 
   home.activation.authorizedKeys = dagEntryAfter ["writeBoundary"] ''
       install -D -m600 ${./id_rsa.pub} $HOME/.ssh/authorized_keys
+  '';
+
+  home.activation.mailPasswords = dagEntryAfter ["writeBoundary"] ''
+     mkdir -p $HOME/.mail
+     install -m600 ${./mail/pass-yrashk} $HOME/.mail/pass-yrashk
+     install -m600 ${./mail/pass-gmail} $HOME/.mail/pass-gmail
   '';
 
   
