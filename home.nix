@@ -197,9 +197,16 @@ in
   };
 
   systemd.user.timers.fetchmail = {
+    Unit = {
+      Description = "regular fetch mail";
+    };
     Timer = {
-     Unit = "fetchmail.service";
-     OnCalendar = "*:0/15";
+      Unit = "fetchmail.service";
+      AccuracySec = "10s";
+      OnCalendar = "*:0/15";
+    };
+    Install = {
+      WantedBy = [ "timers.target" ];
     };
   };
 
