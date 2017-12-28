@@ -13,6 +13,8 @@
       mail-envelope-from 'header
       message-sendmail-envelope-from 'header)
 
+(setq notmuch-search-oldest-first nil)
+
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
