@@ -322,6 +322,7 @@ in
   defaults
   port 587
   tls on
+  tls_trust_file ${cacert}/etc/ssl/certs/ca-bundle.crt
   account yrashk
   host mail.etceteralabs.com
   from me@yrashk.com
