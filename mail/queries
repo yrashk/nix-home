@@ -1,0 +1,3 @@
+{
+  inbox = "tag:inbox AND tag:unread AND (NOT tag:lists) AND (NOT tag:amazon)";
+}

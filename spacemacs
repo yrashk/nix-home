@@ -14,6 +14,7 @@
       message-sendmail-envelope-from 'header)
 
 (setq notmuch-search-oldest-first nil)
+(setq notmuch-saved-searches '(@queries@))
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.

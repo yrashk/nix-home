@@ -142,7 +142,7 @@ ifconfig:connect_signal("button::press", function()
         ifconfig_t:emit_signal("timeout")
 end)
 
-emails = awful.widget.watch('notmuch count tag:unread', 10, function(widget, stdout) 
+emails = awful.widget.watch('notmuch count @inbox_query@', 10, function(widget, stdout) 
               widget:set_text("✉ " .. stdout)
             end)
 emails:connect_signal("button:press", function()

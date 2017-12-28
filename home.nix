@@ -260,7 +260,8 @@ in
      '';
   };
 
-  ".config/awesome/rc.lua".source = awesome/rc.lua; 
+  ".config/awesome/rc.lua".source = substituteAll ((import ./awesome/substitutions.nix { inherit lib; })
+                                                   // { src = awesome/rc.lua; });
 
   ".config/awesome/theme.lua".source = awesome/theme.lua; 
 
@@ -313,7 +314,8 @@ in
      };
      recursive = true;
   }; 
-  ".spacemacs".source = ./spacemacs;
+  ".spacemacs".source = substituteAll ( (import ./spacemacs-substitutions.nix { inherit lib; }) 
+                                        // { src =./spacemacs; });
   
   ".mbsyncrc".source = mail/mbsyncrc;
   ".notmuch-config".source = mail/notmuch-config;
