@@ -125,9 +125,19 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
+
+local_timezone = awful.spawn("date +%Z")
 localclock = wibox.widget.textclock()
-bkkclock = wibox.widget.textclock("BKK %l%P ", 60, "Asia/Bangkok")
-svgclock = wibox.widget.textclock("SVG %l%P ", 60, "Europe/Oslo")
+if local_timezone ~= "ICT" then
+   secondclock = wibox.widget.textclock("BKK %l%P ", 60, "Asia/Bangkok")
+else 
+   secondclock = wibox.widget.textclock("YVR %l%P ", 60, "America/Vancouver")
+end
+if local_timezone ~= "CET" then
+   thirdclock = wibox.widget.textclock("SVG %l%P ", 60, "Europe/Oslo")
+else
+   thirdclock = wibox.widget.textclock("YVR %l%P ", 60, "America/Vancouver")
+end
 
 
 cal = calendar({})
@@ -251,8 +261,8 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             wibox.widget.systray(),
             localclock,
-            bkkclock,
-            svgclock,
+            secondclock,
+            thirdclock,
             awful.widget.watch('cat /var/run/pia', 1),
             wibox.widget.textbox(" "),
             ifconfig,
