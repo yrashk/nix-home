@@ -4,6 +4,15 @@
 
 (setq inferior-clips-program "clips")
 
+(setq mail-host-address "yrashk.com")
+(setq mail-user-agent 'message-user-agent)
+(setq message-send-mail-function 'message-send-mail-with-sendmail)
+(setq message-kill-buffer-on-exit t)
+(setq mail-specify-envelope-from t)
+(setq sendmail-program "/home/yrashk/.nix-profile/bin/msmtp" 
+      mail-envelope-from 'header
+      message-sendmail-envelope-from 'header)
+
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
