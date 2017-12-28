@@ -48,7 +48,7 @@ other_email=yrashk@gmail.com;yrashk@etceteralabs.com;yurii@rashkovskii.com;
 #		in the mail store.
 #
 [new]
-tags=unread;inbox;
+tags=new
 ignore=
 
 # Search configuration
