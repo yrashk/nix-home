@@ -1,3 +1,4 @@
 env notmuch new
 env notmuch tag +gmail -- "to:yrashk@gmail.com"
 env notmuch tag +gmail -- "x-github-recipient:yrashk"
+env notmuch tag +amazon -inbox -unread -- "from:@amazon.ca"
