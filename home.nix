@@ -128,6 +128,7 @@ in
     enable = true;
     extraConfig = builtins.readFile vim/vimrc;
     settings = {
+       relativenumber = true;
        number = true;
     };
     plugins = [
