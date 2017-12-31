@@ -335,6 +335,12 @@ in
   auth on
   user me@yrashk.com
   passwordeval ${gnupg}/bin/gpg2  --no-tty -q -d ${mail/pass-yrashk.gpg}
+  account gmail
+  host smtp.gmail.com
+  from yrashk@gmail.com
+  auth on
+  user yrashk@gmail.com
+  passwordeval ${gnupg}/bin/gpg2  --no-tty -q -d ${mail/pass-gmail.gpg}
   '';
 
 
