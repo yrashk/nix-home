@@ -107,6 +107,7 @@ in
     pkgs.emacs
     pkgs.nix-prefetch-git
     isync notmuch notmuch-apply msmtp python36Packages.afew
+    pkgs.jq
   ];
 
 
