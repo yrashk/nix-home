@@ -240,6 +240,7 @@ in
        abbr h 'home-manager switch'
        abbr r 'sudo nixos-rebuild switch'
        abbr gvim vim -g
+       abbr mc 'env TERM=linux mc'
     end
     function __fish_command_not_found_handler --on-event fish_command_not_found
        command-not-found $argv[1]
