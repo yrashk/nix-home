@@ -1,3 +1,5 @@
 {
   inbox = "tag:inbox AND tag:unread AND (NOT tag:lists) AND (NOT tag:amazon)";
+  github = "tag:lists AND from:@github.com AND tag:unread";
+  lists = "tag:lists AND tag:unread";
 }
