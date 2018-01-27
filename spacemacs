@@ -4,12 +4,14 @@
 
 (setq inferior-clips-program "clips")
 
+(setq org-agenda-files '("~/org"))
+(setq org-mobile-directory "~/org.mobile")
 (setq mail-host-address "yrashk.com")
 (setq mail-user-agent 'message-user-agent)
 (setq message-send-mail-function 'message-send-mail-with-sendmail)
 (setq message-kill-buffer-on-exit t)
 (setq mail-specify-envelope-from t)
-(setq sendmail-program "/home/yrashk/.nix-profile/bin/msmtpq" 
+(setq sendmail-program "/home/yrashk/.nix-profile/bin/msmtp-enqueue" 
       mail-envelope-from 'header
       message-sendmail-envelope-from 'header)
 

@@ -51,6 +51,15 @@ notmuch-apply = stdenv.mkDerivation {
     makeWrapper $out/notmuch-apply $out/bin/notmuch-apply
   '';
 };
+msmtp-enqueue = stdenv.mkDerivation {
+   name = "msmtp-enqueue";
+   phases = [ "installPhase" ];
+   buildInputs = [ msmtp makeWrapper ];
+   installPhase = ''
+     mkdir -p $out/bin
+     makeWrapper ${msmtp}/bin/msmtpq $out/bin/msmtp-enqueue --set EMAIL_QUEUE_QUIET t
+   '';
+};
 in         
 {
   home.packages = [
@@ -106,7 +115,7 @@ in
     pkgs.mosh
     pkgs.emacs
     pkgs.nix-prefetch-git
-    isync notmuch notmuch-apply msmtp python36Packages.afew
+    isync notmuch notmuch-apply msmtp msmtp-enqueue python36Packages.afew
     pkgs.jq
   ];
 
