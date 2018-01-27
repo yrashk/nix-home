@@ -9,7 +9,7 @@
 (setq message-send-mail-function 'message-send-mail-with-sendmail)
 (setq message-kill-buffer-on-exit t)
 (setq mail-specify-envelope-from t)
-(setq sendmail-program "/home/yrashk/.nix-profile/bin/msmtp" 
+(setq sendmail-program "/home/yrashk/.nix-profile/bin/msmtpq" 
       mail-envelope-from 'header
       message-sendmail-envelope-from 'header)
 
