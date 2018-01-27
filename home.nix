@@ -105,7 +105,6 @@ in
     pkgs.clips
     pkgs.mosh
     pkgs.emacs
-    isync notmuch notmuch-apply msmtp
     isync notmuch notmuch-apply msmtp python36Packages.afew
   ];
 
