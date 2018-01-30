@@ -98,7 +98,7 @@ in
     pkgs.zim # desktop wiki
     pkgs.whois
     pkgs.youtube-dl
-    pkgs.gimp
+    pkgs.gimp pkgs.imagemagick
     pkgs.gcc
     (pkgs.rustChannels.stable.rust.override { extensions = ["rust-src"]; })
     pkgs.tla-plus.full
