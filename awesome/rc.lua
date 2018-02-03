@@ -126,9 +126,11 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- {{{ Wibar
 -- Create a textclock widget
 
-local_timezone = awful.spawn("date +%Z")
+local handle = io.popen("date +%Z")
+local local_timezone = handle:read("*a"):gsub("\n$","")
+handle:close()
 localclock = wibox.widget.textclock()
-if local_timezone ~= "ICT" then
+if local_timezone ~= "ICT" and local_timezone ~= "+07" then
    secondclock = wibox.widget.textclock("BKK %l%P ", 60, "Asia/Bangkok")
 else 
    secondclock = wibox.widget.textclock("YVR %l%P ", 60, "America/Vancouver")
