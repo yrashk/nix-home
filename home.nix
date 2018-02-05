@@ -104,7 +104,7 @@ in
     pkgs.tla-plus.full
     pkgs.ghc pkgs.cabal-install pkgs.stack
     pkgs.haskellPackages.idris
-    pkgs.tetex
+    pkgs.pandoc pkgs.texlive.combined.scheme-tetex
     pkgs.funnelweb
     pkgs.plantuml
     pkgs.vagrant
