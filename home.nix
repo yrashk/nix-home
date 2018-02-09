@@ -60,6 +60,15 @@ msmtp-enqueue = stdenv.mkDerivation {
      makeWrapper ${msmtp}/bin/msmtpq $out/bin/msmtp-enqueue --set EMAIL_QUEUE_QUIET t
    '';
 };
+sit = stdenv.mkDerivation {
+   name = "sit";
+   src = ./.;
+   phases = [ "installPhase" ];
+   installPhase = ''
+     mkdir -p $out/bin
+     cp ${./sit.sh} $out/bin/sit
+   '';
+};
 in         
 {
   home.packages = [
@@ -117,6 +126,7 @@ in
     pkgs.nix-prefetch-git
     isync notmuch notmuch-apply msmtp msmtp-enqueue python36Packages.afew
     pkgs.jq
+    sit
   ];
 
 
