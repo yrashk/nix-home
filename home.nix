@@ -67,6 +67,7 @@ sit = stdenv.mkDerivation {
    installPhase = ''
      mkdir -p $out/bin
      cp ${./sit.sh} $out/bin/sit
+     cp ${./sit-web.sh} $out/bin/sit-web
    '';
 };
 in         
