@@ -333,8 +333,8 @@ in
      source = fetchFromGitHub {
        owner = "syl20bnr";
        repo = "spacemacs";
-       rev = "5ec172d7bdbb71d84d0189a9751665f3cb9977af";
-       sha256 = "0zy0n0sc691q7gbvf1fs6wg3p53gza1nq1awmja30mj86mpkdnjz";
+       rev = "1f93c05";
+       sha256 = "1x0s5xlwhajgnlnb9mk0mnabhvhsf97xk05x79rdcxwmf041h3fd";
      };
      recursive = true;
   }; 
