@@ -162,6 +162,8 @@ in
     ];
   };
 
+  services.kbfs.enable = true;
+
   services.udiskie = {
     enable = true;
   };
