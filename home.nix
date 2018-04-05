@@ -42,12 +42,12 @@ fetchLatestGit = { url, ref ? "HEAD" }@args:
 notmuch-apply = stdenv.mkDerivation {
   name = "notmuch-apply";
   phases = [ "installPhase" ];
-  buildInputs = [ notmuch python36Packages.afew bash makeWrapper];
+  buildInputs = [ notmuch afew bash makeWrapper];
   installPhase = ''
     mkdir -p $out/bin
     install -m777 ${./mail/notmuch} $out/notmuch-apply
     sed -i s/notmuch/"${escape ["/"] (toString notmuch)}\/bin\/notmuch"/g $out/notmuch-apply
-    sed -i s/afew/"${escape ["/"] (toString python36Packages.afew)}\/bin\/afew"/g $out/notmuch-apply
+    sed -i s/afew/"${escape ["/"] (toString afew)}\/bin\/afew"/g $out/notmuch-apply
     makeWrapper $out/notmuch-apply $out/bin/notmuch-apply
   '';
 };
@@ -125,7 +125,7 @@ in
     pkgs.mosh
     pkgs.emacs
     pkgs.nix-prefetch-git
-    isync notmuch notmuch-apply msmtp msmtp-enqueue python36Packages.afew
+    isync notmuch notmuch-apply msmtp msmtp-enqueue afew
     pkgs.jq
     sit
   ];
