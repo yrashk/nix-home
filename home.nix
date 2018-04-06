@@ -128,6 +128,7 @@ in
     isync notmuch notmuch-apply msmtp msmtp-enqueue afew
     pkgs.jq
     sit
+    pkgs.binutils-unwrapped
   ];
 
 
