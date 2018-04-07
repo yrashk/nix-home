@@ -135,7 +135,7 @@ if local_timezone ~= "ICT" and local_timezone ~= "+07" then
 else 
    secondclock = wibox.widget.textclock("YVR %l%P ", 60, "America/Vancouver")
 end
-if local_timezone ~= "CET" then
+if local_timezone ~= "CEST" and local_timezone ~= "+01" then
    thirdclock = wibox.widget.textclock("SVG %l%P ", 60, "Europe/Oslo")
 else
    thirdclock = wibox.widget.textclock("YVR %l%P ", 60, "America/Vancouver")
