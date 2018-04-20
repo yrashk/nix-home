@@ -370,7 +370,7 @@ in
   '';
 
 
-  ".IntelliJIdea2017.3/config" = {
+  ".IntelliJIdea2018.1/config" = {
      source = ./idea-config;
      recursive = true;
   };
@@ -380,7 +380,7 @@ in
   };
 
   home.activation.copyIdeaKey = dagEntryAfter ["writeBoundary"] ''
-      install -D -m600 ${./private/idea.key} $HOME/.IntelliJIdea2017.3/config/idea.key
+      install -D -m600 ${./private/idea.key} $HOME/.IntelliJIdea2018.1/config/idea.key
   '';
 
   home.activation.copySSHKey = dagEntryAfter ["writeBoundary"] ''
