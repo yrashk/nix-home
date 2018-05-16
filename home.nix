@@ -129,6 +129,7 @@ in
     pkgs.jq
     sit
     pkgs.binutils-unwrapped
+    pkgs.inkscape
   ];
 
 
