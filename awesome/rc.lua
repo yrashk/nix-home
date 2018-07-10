@@ -485,6 +485,17 @@ for i = 1, 9 do
                         end
                   end,
                   {description = "view tag #"..i, group = "tag"}),
+        -- View tag only, all screens
+        awful.key({ modkey, "Mod1" }, "#" .. i + 9,
+                  function ()
+                        for s in screen do
+                                local tag = s.tags[i]
+                                if tag then
+                                        tag:view_only()
+                                end
+                        end
+                  end,
+                  {description = "view tag #"..i.." on all screens", group = "tag"}),
         -- Toggle tag display.
         awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()
