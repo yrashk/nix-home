@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-release=/home/yrashk/Projects/sit-it/sit/target/release/sit
-debug=/home/yrashk/Projects/sit-it/sit/target/debug/sit
+release=/home/yrashk/Projects/sit-fyi/sit/target/release/sit
+debug=/home/yrashk/Projects/sit-fyi/sit/target/debug/sit
 release_ts=$(echo -n $(stat -c "%Y" $release 2>/dev/null || echo 0))
 debug_ts=$(echo -n $(stat -c "%Y" $debug 2>/dev/null || echo 0))
 
