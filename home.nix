@@ -255,6 +255,11 @@ in
 
   home.file = { 
 
+  ".config/inkscape" = {
+    source = ./inkscape;
+    recursive = true;
+  };
+
   ".config/inkscape/extensions/isometric_projection.inx".source = "${inkscapeIsometric}/isometric_projection.inx";
   ".config/inkscape/extensions/isometric_projection.py".source = "${inkscapeIsometric}/isometric_projection.py";
   
