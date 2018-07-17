@@ -70,6 +70,19 @@ sit = stdenv.mkDerivation {
      cp ${./sit-web.sh} $out/bin/sit-web
    '';
 };
+inkscapeIsometric = stdenv.mkDerivation {
+   name = "inkscape-isometric-projection";
+   src = fetchFromGitHub {
+      owner = "jdhoek";
+      repo = "inkscape-isometric-projection";
+      rev = "v1.1";
+      sha256 = "1vj98bci9fsf08bmp05pxzvcm9wvlrmqvms4piz6iy09m3jpkcli";
+   };
+   installPhase = ''
+     mkdir -p $out
+     cp isometric_projection.* $out/
+   '';
+};
 in         
 {
   home.packages = [
@@ -129,7 +142,8 @@ in
     pkgs.jq
     sit
     pkgs.binutils-unwrapped
-    pkgs.inkscape
+    pkgs.unstable.inkscape
+    inkscapeIsometric
   ];
 
 
@@ -240,6 +254,9 @@ in
   };
 
   home.file = { 
+
+  ".config/inkscape/extensions/isometric_projection.inx".source = "${inkscapeIsometric}/isometric_projection.inx";
+  ".config/inkscape/extensions/isometric_projection.py".source = "${inkscapeIsometric}/isometric_projection.py";
   
   ".config/alacritty/alacritty.yml".source = ./alacritty.yml;
 
