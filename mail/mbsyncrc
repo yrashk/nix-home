@@ -8,8 +8,9 @@ IMAPStore yrashk-remote
 Account yrashk
 
 MaildirStore local
-Path ~/.mail/
-Inbox ~/.mail/Inbox
+Path ~/.mail/yrashk/
+Inbox ~/.mail/yrashk/Inbox
+SubFolders Verbatim
 
 Channel yrashk
 Master :yrashk-remote:
@@ -28,9 +29,9 @@ IMAPStore gmail-remote
 Account gmail
 
 MaildirStore gmail-local
-Path ~/.mail/gmail
+Path ~/.mail/gmail/
 Inbox ~/.mail/gmail/Inbox
-
+SubFolders Verbatim
 
 Channel gmail
 Master :gmail-remote:
