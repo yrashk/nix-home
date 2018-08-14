@@ -410,35 +410,6 @@ in
 
   ".ssh/id_rsa.pub".source = ./id_rsa.pub;
 
-  # vim plugins for RLS
-  ".vim/pack/bundles/start/async.vim".source = fetchFromGitHub {
-     owner = "prabirshrestha";
-     repo = "async.vim";
-     rev = "25abd12";
-     sha256 = "11vql8cvf0c8cggkkhggdc074xs8q3z3ydp2h2vckk45rhcmdqc3";
-  };
-
-  ".vim/pack/bundles/start/vim-lsp".source = fetchFromGitHub {
-     owner = "prabirshrestha";
-     repo = "vim-lsp";
-     rev = "e7ab592";
-     sha256 = "0f53wnyd892wvzxq2j2dw3k93m80rxbvxism09wlxy7sq128mi1k";
-  };
-
-  ".vim/pack/bundles/start/asyncomplete.vim".source = fetchFromGitHub {
-     owner = "prabirshrestha";
-     repo = "asyncomplete.vim";
-     rev = "a9766af";
-     sha256 = "0psm9kvmpkgvrf21cgd39jljh5pdg92iqifyj8qkv0nq73q1h8dz";
-  };
-
-  ".vim/pack/bundles/start/asyncomplete-lsp.vim".source = fetchFromGitHub {
-     owner = "prabirshrestha";
-     repo = "asyncomplete-lsp.vim";
-     rev = "175adcd";
-     sha256 = "1229hjkrqpjlznfgprwybi5k94gwhz35mi75qz4s3bqc2n7kigr1";
-  };
-
   ".stack/config.yaml".text = ''
     templates:
       params:
