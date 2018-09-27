@@ -144,6 +144,7 @@ in
     pkgs.binutils-unwrapped
     pkgs.unstable.inkscape
     inkscapeIsometric
+    pkgs.unstable.astroid
   ];
 
 
