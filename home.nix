@@ -6,39 +6,6 @@ with lib;
 with import <home-manager/modules/lib/dag.nix> { inherit lib; };
 
 let
-sanitiseName = stringAsChars (c: if elem c (lowerChars ++ upperChars)
-                                    then c else "");
-fetchGitHashless = args: stdenv.lib.overrideDerivation
-  # Use a dummy hash, to appease fetchgit's assertions
-    (fetchgit (args // { sha256 = hashString "sha256" args.url; }))
-
-      # Remove the hash-checking
-        (old: {
-         outputHash     = null;
-         outputHashAlgo = null;
-         outputHashMode = null;
-         sha256         = null;
-         });
-latestGitCommit = { url, ref ? "HEAD" }:
-     runCommand "repo-${sanitiseName ref}-${sanitiseName url}"
-     {
-        # Avoids caching. This is a cheap operation and needs to be up-to-date
-        version = toString currentTime;
-         # Required for SSL
-         GIT_SSL_CAINFO = "${cacert}/etc/ssl/certs/ca-bundle.crt";
-
-          buildInputs = [ git gnused ];
-     }
-     ''
-     REV=$(git ls-remote "${url}" "${ref}") || exit 1
-
-     printf '"%s"' $(echo "$REV"        |
-         head -n1           |
-         sed -e 's/\s.*//g' ) > "$out"
-     '';
-fetchLatestGit = { url, ref ? "HEAD" }@args:
-    with { rev = import (latestGitCommit { inherit url ref; }); };
-    fetchGitHashless (removeAttrs (args // { inherit rev; }) [ "ref" ]);
 notmuch-apply = stdenv.mkDerivation {
   name = "notmuch-apply";
   phases = [ "installPhase" ];
@@ -317,9 +284,7 @@ in
 
   ".config/awesome/theme.lua".source = awesome/theme.lua; 
 
-  ".config/awesome/backgrounds".source = fetchLatestGit {
-     url = "https://github.com/yrashk/backgrounds";
-  };
+  ".config/awesome/backgrounds".source = ./backgrounds;
 
   ".config/awesome/foggy".source = fetchFromGitHub {
      owner = "k3rni";

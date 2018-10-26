@@ -4,3 +4,6 @@
 [submodule "nixpkgs-mozilla"]
 	path = nixpkgs-mozilla
 	url = https://github.com/mozilla/nixpkgs-mozilla.git
+[submodule "backgrounds"]
+	path = backgrounds
+	url = https://github.com/yrashk/backgrounds
