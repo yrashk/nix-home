@@ -90,7 +90,6 @@ in
     pkgs.gimp pkgs.imagemagick
     pkgs.gcc
     (pkgs.rustChannels.stable.rust.override { extensions = ["rust-src"]; })
-    pkgs.tla-plus.full
     pkgs.ghc pkgs.cabal-install pkgs.stack
     pkgs.haskellPackages.idris
     pkgs.pandoc pkgs.texlive.combined.scheme-tetex
