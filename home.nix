@@ -60,7 +60,6 @@ in
     pkgs.blackbox pkgs.keybase
     pkgs.udisks
     pkgs.mc
-    pkgs.nix-repl
     pkgs.rlwrap
     pkgs.xorg.xdpyinfo # awesome/foggy seems to want it
     pkgs.vlc
