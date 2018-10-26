@@ -10,3 +10,5 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " open NERDTree on Ctrl-n
 map <C-n> :NERDTreeToggle<CR>
+
+set encoding=utf-8
