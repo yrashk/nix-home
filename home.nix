@@ -147,6 +147,8 @@ in
 
   services.kbfs.enable = true;
 
+  services.syncthing.enable = true;
+
   services.udiskie = {
     enable = true;
   };
