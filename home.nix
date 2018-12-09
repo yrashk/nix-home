@@ -77,6 +77,12 @@ in
     pkgs.unstable.idea.idea-ultimate pkgs.jdk
     pkgs.gradle
     pkgs.tdesktop # Telegram 
+    (pkgs.unstable.zoom-us.overrideAttrs (super: {
+      postInstall = ''
+        ${super.postInstall}
+        wrapProgram $out/bin/zoom-us --set LIBGL_ALWAYS_SOFTWARE 1
+      '';
+    }))
     pkgs.unstable.slack
     pkgs.skypeforlinux
     pkgs.chromium pkgs.firefox
