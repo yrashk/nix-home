@@ -2,6 +2,7 @@
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
+local lain = require("lain")
 -- Widget and layout library
 local wibox = require("wibox")
 local battery_widget = require("battery-widget")
@@ -74,6 +75,8 @@ awful.layout.layouts = {
     awful.layout.suit.magnifier,
     awful.layout.suit.corner.nw,
     awful.layout.suit.floating,
+    lain.layout.centerwork,
+    lain.layout.termfair,
     -- awful.layout.suit.corner.ne,
     --
     -- awful.layout.suit.corner.sw,
@@ -149,7 +152,7 @@ net_wireless = net_widgets.wireless({interface="wlp2s0", font="Iosevka", onclick
 net_internet = net_widgets.internet({indent = 0, timeout = 5})
 
 
-ifconfig, ifconfig_t = awful.widget.watch('curl ifconfig.co/city', 60)
+ifconfig, ifconfig_t = awful.widget.watch('curl -f ifconfig.co/city || echo -n', 60)
 ifconfig:connect_signal("button::press", function() 
         ifconfig_t:emit_signal("timeout")
 end)
@@ -158,7 +161,7 @@ emails = awful.widget.watch('notmuch count @inbox_query@', 10, function(widget, 
               widget:set_text("✉ " .. stdout)
             end)
 emails:connect_signal("button:press", function()
-        awful.spawn("emacs -f notmuch")
+        awful.spawn("systemctl --user start fetchmail.service")
 end)
 
 -- Create a wibox for each screen and add it
@@ -307,7 +310,19 @@ globalkeys = gears.table.join(
     ),
     awful.key({ modkey,           }, "k",
         function ()
-            awful.client.focus.byidx(-1)
+            local max_clients = 0
+            for s in screen do
+                    local clients = 0
+                    for k,c in pairs(s.clients) do
+                            clients = clients + 1
+                    end
+                    max_clients = math.max(max_clients, clients)
+            end
+            if max_clients == 1 then
+                    awful.screen.focus_relative(-1)
+            else
+                    awful.client.focus.byidx(-1)
+            end
         end,
         {description = "focus previous by index", group = "client"}
     ),
@@ -441,6 +456,11 @@ clientkeys = gears.table.join(
               {description = "move to master", group = "client"}),
     awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
               {description = "move to screen", group = "client"}),
+    awful.key({ modkey, "Shift"   }, "o",      function (c) 
+            c:move_to_screen()               
+            c:to_selected_tags()
+    end,
+              {description = "move to screen+tag", group = "client"}),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
     awful.key({ modkey,           }, "n",
@@ -667,6 +687,10 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Arrange the displays
 awful.spawn("xrandr --output eDP1 --mode 2048x1152")
 awful.spawn("xrandr --output eDP1 --left-of DP2-1")
+awful.spawn("xrandr --output eDP1 --left-of DP3-1")
+awful.spawn("xrandr --output eDP1 --left-of HDMI2")
+awful.spawn("xrandr --output HDMI2 --below DP2-1")
+awful.spawn("xrandr --output HDMI2 --below DP3-1")
 
 -- Force xkb config
 awful.spawn("setxkbmap")

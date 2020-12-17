@@ -67,9 +67,10 @@ values."
      ;; version-control
      git
      rust
-     email
+     javascript
+     haskell
      (org :variables org-enable-github-support t) 
-     html
+     html markdown
      notmuch
      )
    ;; List of additional packages that will be installed without being

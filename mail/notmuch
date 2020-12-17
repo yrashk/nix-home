@@ -3,3 +3,4 @@ afew -n -t
 notmuch tag +gmail -- "to:yrashk@gmail.com"
 notmuch tag +gmail -- "x-github-recipient:yrashk"
 notmuch tag +amazon -inbox -unread -- "from:@amazon.ca"
+notmuch tag +twitter -inbox -unread -- "from:info@twitter.com"

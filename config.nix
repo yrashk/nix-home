@@ -1,7 +1,7 @@
 {
   allowUnfree = true;
   chromium = {
-     enablePepperFlash = true;
+#     enablePepperFlash = true;
   };
   packageOverrides = pkgs: with pkgs; rec {
       unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) {
@@ -9,6 +9,13 @@
               allowUnfree = true;
           };
       };
+
+       kdenlive = pkgs.kdenlive.overrideAttrs (oldAttrs: rec {
+         postInstall = ''
+          wrapProgram $out/bin/kdenlive --prefix FREI0R_PATH : ${pkgs.frei0r}/lib/frei0r-1
+        '';
+        nativeBuildInputs = oldAttrs.nativeBuildInputs or [] ++ [ pkgs.makeWrapper ];
+     });
 
       # https://github.com/NixOS/nixpkgs/issues/18640
       tla-plus = callPackage pkgs/tla-plus { inherit pkgs; };
@@ -20,5 +27,10 @@
           polyml = polyml-5-4;
       };
       skypeforlinux = unstable.skypeforlinux;
+      mmark = callPackage ./mmark {  };
+      xml2rfc = callPackage ./xml2rfc { };
+      sikulix = callPackage ./sikulix.nix { };
+      elixir = unstable.elixir;
   };
 }
+

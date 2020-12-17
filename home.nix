@@ -57,7 +57,7 @@ in
     pkgs.wget
     pkgs.gnupg
     pkgs.wpa_supplicant_gui
-    pkgs.blackbox pkgs.keybase
+    pkgs.blackbox pkgs.keybase pkgs.keybase-gui
     pkgs.udisks
     pkgs.mc
     pkgs.rlwrap
@@ -73,31 +73,35 @@ in
     pkgs.unstable.dropbox
     pkgs.zeal
     pkgs.atom
-    pkgs.vscode
+    #pkgs.vscode
     pkgs.unstable.idea.idea-ultimate pkgs.jdk
     pkgs.gradle
     pkgs.tdesktop # Telegram 
-    (pkgs.unstable.zoom-us.overrideAttrs (super: {
-      postInstall = ''
-        ${super.postInstall}
-        wrapProgram $out/bin/zoom-us --set LIBGL_ALWAYS_SOFTWARE 1
-      '';
-    }))
+    #(pkgs.zoom-us.overrideAttrs (super: {
+    #  postInstall = ''
+    #    ${super.postInstall}
+    #    wrapProgram $out/bin/zoom-us --set LIBGL_ALWAYS_SOFTWARE 1
+    #  '';
+    #}))
+    zoom-us
     pkgs.unstable.slack
-    pkgs.skypeforlinux
-    pkgs.chromium pkgs.firefox
-    pkgs.alacritty pkgs.termite pkgs.tmux
+    #pkgs.skypeforlinux
+    pkgs.chromium pkgs.firefox pkgs.google-chrome
+    pkgs.termite pkgs.tmux
     pkgs.translate-shell
     pkgs.xss-lock
     pkgs.ansifilter # used to strip ANSI out in awesome extensions 
-    pkgs.zim # desktop wiki
+    #pkgs.zim # desktop wiki
     pkgs.whois
     pkgs.youtube-dl
     pkgs.gimp pkgs.imagemagick
     pkgs.gcc
     (pkgs.rustChannels.stable.rust.override { extensions = ["rust-src"]; })
+    pkgs.rustracer
+    #pkgs.tla-plus.full
     pkgs.ghc pkgs.cabal-install pkgs.stack
     pkgs.haskellPackages.idris
+    pkgs.unstable.ponyc
     pkgs.pandoc pkgs.texlive.combined.scheme-tetex
     pkgs.funnelweb
     pkgs.plantuml
@@ -111,11 +115,29 @@ in
     pkgs.nix-prefetch-git
     isync notmuch notmuch-apply msmtp msmtp-enqueue afew
     pkgs.jq
+    pkgs.valgrind pkgs.kcachegrind pkgs.graphviz
+    pkgs.unstable.ardour
+    pkgs.simplescreenrecorder pkgs.ffcast pkgs.xorg.xwininfo ## screencasts
     sit
-    pkgs.binutils-unwrapped
+    pkgs.mmark pkgs.xml2rfc
+    #pkgs.binutils-unwrapped
+    #pkgs.sikulix
     pkgs.unstable.inkscape
     inkscapeIsometric
     pkgs.unstable.astroid
+    pkgs.unstable.nodePackages.tiddlywiki
+    pkgs.unstable.brave
+    pkgs.google-play-music-desktop-player
+    pkgs.unstable.cmake
+    pkgs.unstable.framac pkgs.unstable.why3 pkgs.unstable.alt-ergo
+    pkgs.python3 # for YCM
+    adapta-gtk-theme
+    libreoffice
+    coreutils
+    #kdenlive frei0r ffmpeg-full
+    mdcat xclip
+    i3blocks i3status mako wofi grim waybar redshift-wlr
+    obs-studio
   ];
 
 
@@ -128,7 +150,7 @@ in
     userEmail = "yrashk@gmail.com";
     signing = {
       key = "me@yrashk.com";
-      signByDefault = true;
+      signByDefault = false;
     };
   };
 
@@ -141,18 +163,23 @@ in
        relativenumber = true;
        number = true;
     };
-    plugins = [
-      "idris-vim"
-      "sensible"
-      "vim-airline"
-      "The_NERD_tree" # file system explorer
-      "fugitive" "vim-gitgutter" # git 
-      "rust-vim"
+    plugins = with pkgs.vimPlugins; [
+      vim-elixir
+      idris-vim
+      sensible
+      vim-airline
+      The_NERD_tree # file system explorer
+      fugitive vim-gitgutter # git 
+      rust-vim
+      #YouCompleteMe
+      vim-abolish
+      command-t
+      vim-go
     ];
   };
 
   services.kbfs.enable = true;
-
+  
   services.syncthing.enable = true;
 
   services.udiskie = {
@@ -247,6 +274,8 @@ in
    text = ''
    set-option -g default-shell /run/current-system/sw/bin/fish
    set-window-option -g mode-keys vi
+   set -g default-terminal "screen-256color"
+   set -ga terminal-overrides ',screen-256color:Tc'
    '';
   };
 
@@ -256,12 +285,14 @@ in
     gpg-connect-agent updatestartuptty /bye > /dev/null
     set -x SSH_AUTH_SOCK $XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh
     set -x EDITOR vim
+    set -x TERM xterm-256color
     if status --is-interactive
        set -g fish_user_abbreviations
        abbr h 'home-manager switch'
        abbr r 'sudo nixos-rebuild switch'
        abbr gvim vim -g
        abbr mc 'env TERM=linux mc'
+       abbr tmux 'tmux -2'
     end
     function __fish_command_not_found_handler --on-event fish_command_not_found
        command-not-found $argv[1]
@@ -325,6 +356,13 @@ in
      repo = "net_widgets";
      rev = "82d1ecd";
      sha256 = "13c9kcc8fj4qjsbx14mfdhav5ymqxdjbng6lpnc5ycgfpyap2xqf";
+  };
+
+  ".config/awesome/lain".source = fetchFromGitHub {
+     owner = "lcpz";
+     repo = "lain";
+     rev = "9477093";
+     sha256 = "0rfzf93b2v22iqsv84x76dy7h5rbkxqi4yy2ycmcgik4qb0crddp";
   };
 
   # spacemacs
