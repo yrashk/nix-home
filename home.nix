@@ -50,7 +50,17 @@ inkscapeIsometric = stdenv.mkDerivation {
      cp isometric_projection.* $out/
    '';
 };
-in         
+vim-mix-format = pkgs.vimUtils.buildVimPluginFrom2Nix rec {
+        pname = "vim-mix-format";
+        version = "cbb63e6";
+        src = fetchFromGitHub {
+          owner = "mhinz";
+          repo = pname;
+          rev = version;
+          sha256 = "037fbmcj9dfj89jd2xa1xv55baqvws85xpjmypgr3kx7y183l0b7";
+        };
+        meta.homepage = "https://github.com/mhinz/vim-mix-format";
+     }; in
 {
   home.packages = [
     pkgs.unzip
@@ -165,6 +175,7 @@ in
     };
     plugins = with pkgs.vimPlugins; [
       vim-elixir
+      vim-mix-format
       idris-vim
       sensible
       vim-airline
